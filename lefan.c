@@ -224,6 +224,74 @@ eqgen() {
 	}
 }
 
+mircor () {
+	double x1,y1, mx, my, mo,x,y;
+	int c;
+	printf("\n========================================\n");
+	printf("Mirror of a Point");
+	printf("\n========================================\n\n");
+	printf("*Options: \t (choose one)\n");
+	printf("1. Mirror with respect to X axis\n");
+	printf("2. Mirror with respect to Y axis\n");
+	printf("3. Mirror with respect to Origin\n");
+	printf("4. Mirror with respect to another Point\n");
+
+	printf("\nChoose and option: ");
+	scanf("%d", &c);
+
+	if (c == 1) {
+		system("clear");
+		printf("Enter coordinates of the point: ");
+		scanf("%lf %lf", &x1, &y1);
+		printf("Mirror of (%.1lf, %.1lf) w.r.t X axis is (%.1lf, %.1lf)\n", x1,y1,x1,-y1);
+	}
+
+	if (c == 2) {
+		system("clear");
+		printf("Enter coordinates of the point: ");
+		scanf("%lf %lf", &x1, &y1);
+		printf("Mirror of (%.1lf, %.1lf) w.r.t Y axis is (%.1lf, %.1lf)\n", x1,y1,-x1,y1);
+	}
+
+	if (c == 3) {
+		system("clear");
+		printf("Enter coordinates of the point: ");
+		scanf("%lf %lf", &x1, &y1);
+		printf("Mirror of (%.1lf, %.1lf) w.r.t Origin is (%.1lf, %.1lf)\n", x1,y1,-x1,-y1);
+	}
+
+	if (c == 4) {
+		system("clear");
+		printf("Enter coordinates of the point: ");
+		scanf("%lf %lf", &x1, &y1);
+		printf("Enter coordinates of the mirroring point: ");
+		scanf("%lf %lf", &mx, &my);
+		x = (2*mx)-x1;
+		y = (2*my)-y1;
+		printf("Mirror of (%.1lf, %.1lf) w.r.t Origin is (%.1lf, %.1lf)\n", x1,y1,x,y);
+	}
+
+	int choose;
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
+	
+	scanf("%d",&choose);
+
+	if (choose == 1) {
+		mircor();
+	}
+	if (choose == 2) {
+		system("clear");
+		wlc();
+	}
+	if (choose == 0) {
+		system("clear");
+		main();
+	}
+
+
+
+}
+
 wlc() {
 	int opr;
     printf("Welcome to Analysis of Functions and Linear Equations\n\n");
@@ -251,6 +319,7 @@ wlc() {
 	printf("15. Profit Diagram\n");
 	printf("\n\n");
 	printf("0. Log Out\n\n");
+    while ( opr > 15) {
 	printf("---------------------\nChoose Operation: "); scanf("%d",&opr);
 	printf("---------------------\n");
 	if (opr >= 15) {
@@ -270,6 +339,10 @@ wlc() {
 		if (opr == 2) {
 			system("clear");
 			pol();
+		}
+		if (opr == 4) {
+			system("clear");
+			mircor();
 		}
 		if (opr == 7) {
 			system("clear");
@@ -292,12 +365,17 @@ wlc() {
 			system("clear");
 			pol();
 		}
+		if (opr == 4) {
+			system("clear");
+			mircor();
+		}
 		if (opr == 7) {
 			system("clear");
 			eqgen();
 		}
 
 	}
+}
 }
 
 
