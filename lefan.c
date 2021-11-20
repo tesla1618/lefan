@@ -196,6 +196,7 @@ eqgen() {
 		xx1 = (-1)*xx;
 		yy1 = (-1)*yy;
 	}
+		
 		printf("Equation:\n");
 	printf("\n %d(x %c %d) = %d(y - %d)", xx1, x_1, yy1, y_1);
 
