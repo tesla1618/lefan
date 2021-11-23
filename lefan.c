@@ -89,8 +89,8 @@ dis_1() {
     printf("Distance between two points : %.3lf units \n", sqrt);
 
 	int choose;
-	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
-	
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
 	scanf("%d",&choose);
 
 	if (choose == 1) {
@@ -131,11 +131,11 @@ pol() {
 	hor = (1+(2*b*k) + k2);
     theta = lob/hor;
     theta = theta * 90;
- 
+
     printf("Polar Coordinates : (r,theta) = (%.2lf , %.2lf)\n\n",r,theta);
 
-	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
-	
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
 	scanf("%d",&choose);
 
 	if (choose == 1) {
@@ -149,7 +149,7 @@ pol() {
 		system("clear");
 		main();
 	}
- 
+
 }
 
 eqgen() {
@@ -174,7 +174,7 @@ eqgen() {
 	if (y1 >= 0 ) {
 		sy = '-';
 	}
-	
+
 	x= x1-x2;
 	y= y1-y2;
 	if (x1<0) {
@@ -196,7 +196,6 @@ eqgen() {
 		xx1 = (-1)*xx;
 		yy1 = (-1)*yy;
 	}
-		
 		printf("Equation:\n");
 	printf("\n %d(x %c %d) = %d(y - %d)", xx1, x_1, yy1, y_1);
 
@@ -208,8 +207,8 @@ eqgen() {
 
 
 	int choose;
-	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
-	
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
 	scanf("%d",&choose);
 
 	if (choose == 1) {
@@ -273,8 +272,8 @@ mircor () {
 	}
 
 	int choose;
-	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
-	
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
 	scanf("%d",&choose);
 
 	if (choose == 1) {
@@ -292,6 +291,189 @@ mircor () {
 
 
 }
+
+slopeq () {
+	double slope = 0, a,b,c;
+	printf("Find the Slope of a Straight line\n\n");
+	printf("*Readme\n");
+	printf("The equation of a straight line should be following:\n* ax+by+c=0 * the operator signs depend on the constant values.\n");
+	printf("As Example: if it is 12x+13y+23=0, then a = 12, b = 13, c = 23\n and if it is 12x-13y-23 =0, then a = 12, b = -13, c = -23.\n");
+	printf("\n");
+	printf("Enter the values of a b and c::\n");
+	printf("a: ");
+	scanf("%lf",&a);
+	printf("a: ");
+	scanf("%lf",&b);
+	printf("a: ");
+	scanf("%lf",&c);
+	printf("\n");
+	slope = -a/b;
+	printf("Slope of the St. line is: %lf\n", slope);
+
+	int choose;
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
+	scanf("%d",&choose);
+
+	if (choose == 1) {
+		slopeq();
+	}
+	if (choose == 2) {
+		system("clear");
+		wlc();
+	}
+	if (choose == 0) {
+		system("clear");
+		main();
+	}
+
+
+}
+
+
+qua(){
+
+     printf("\n========================================\n");
+    printf("\tQuadrant of a Coordinate");
+    printf("\n========================================\n\n");
+
+   double a,b;
+   printf("Enter two coordinates (X,Y) :");
+   scanf("%lf %lf",&a,&b);
+   if(a > 0.00 && b > 0.00)
+      printf("Point (%.1lf,%.1lf) lies in the 1st Quadrant.\n",a,b);
+   else if(a < 0.00 && b > 0.00)
+      printf("Point (%.1lf,%.1lf) lies in the 2nd Quadrant.\n",a,b);
+   else if(a < 0.00 && b < 0.00)
+      printf("Point (%.1lf,%.1lf) lies in the 3rd Quadrant.\n",a,b);
+   else if(a > 0.00 && b < 0.00)
+      printf("Point (%.1lf,%.1lf) lies in the 4th Quadrant.\n",a,b);
+   else
+      printf("Point (%.1lf,%.1lf) lies in the Origin.\n",a,b);
+
+    printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+    int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        qua();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+
+
+}
+
+
+dis_2()
+{
+     printf("\n=======================================================\n");
+    printf("\tDistance of a Coordinate from O(0,0).");
+    printf("\n========================================================\n\n");
+    printf("Enter the X and Y coordinates : ");
+
+    double x ,y ,s1=0,s2=0,s3=0,root=0,sqrt;
+    scanf("%lf %lf",&x,&y);
+
+    s1 = x*x;
+    s2 = y*y;
+    s3 = s1 + s2;
+    sqrt = s3/2;
+    double temp = 0;
+    while(sqrt != temp)
+        {
+        temp = sqrt;
+        sqrt = ( s3/temp + temp) / 2;
+        }
+
+   printf("Distance of (%.1lf,%.1lf) from O(0,0) : %.3lf units \n",x,y, sqrt);
+
+   printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+    int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        dis_2();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+}
+
+
+diff() {
+
+    int a=0,b=0,c=0,d,e,mp,n,var,terms;
+    char chars, sign1, sign2,sign;
+    char powr;
+    printf("Enter MAX power of X: ");
+    scanf("%d",&mp);
+    terms = mp+1;
+    int ara[terms];
+    printf("Enter %d Constant values:\n", terms);
+    for (n = 1, chars = 'a'; n<=terms &&  chars <= 'z'; n++, ++chars) {
+        printf("%c: ",chars);
+        scanf("%d",&ara[n]);
+    }
+    if ( ara[2] > 0 ) {
+        sign = '+';
+    }
+    if ( ara[2] < 0 ) {
+        sign = '-';
+        ara[2] = -ara[2];
+    }
+    if ( ara[3] >= 0 ) {
+        sign2 = '+';
+    }
+    if ( ara[3] < 0 ){
+        sign2 = '-';
+        ara[3] = -ara[3];
+    }
+    printf("--------------------------\n");
+    printf("The Equation is y = %dx^%d %c %dx^%d %c %d\n", ara[1],mp,sign,ara[2],(mp-1),sign2,ara[3]);
+    printf("--------------------------\n");
+    printf("DIFFERENTIATION of Y:\n");
+    printf("--------------------------\n");
+    a = ara[1]*mp;
+    b = ara[2];
+    if ( mp == 1) {
+    printf("dy/dx = %dx\n", 2*a);
+    }
+    else {
+    printf("dy/dx = %dx %c %d\n", a,sign,b);
+    }
+    printf("--------------------------\n");
+
+    int choose;
+	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
+
+	scanf("%d",&choose);
+
+	if (choose == 1) {
+		diff();
+	}
+	if (choose == 2) {
+		system("clear");
+		wlc();
+	}
+	if (choose == 0) {
+		system("clear");
+		main();
+	}
+
+}
+
 
 wlc() {
 	int opr;
@@ -319,7 +501,7 @@ wlc() {
 	printf("14. Invest Analysis\n");
 	printf("15. Profit Diagram\n");
 	printf("\n\n");
-	printf("0. Log Out\n\n");
+	printf("0. Log Out / Exit\n\n");
     while ( opr > 15) {
 	printf("---------------------\nChoose Operation: "); scanf("%d",&opr);
 	printf("---------------------\n");
@@ -341,13 +523,29 @@ wlc() {
 			system("clear");
 			pol();
 		}
+		if (opr == 3) {
+			system("clear");
+			qua();
+		}
 		if (opr == 4) {
 			system("clear");
 			mircor();
 		}
+		if (opr == 5) {
+			system("clear");
+			dis_2();
+		}
 		if (opr == 7) {
 			system("clear");
 			eqgen();
+		}
+		if (opr == 9) {
+			system("clear");
+			slopeq();
+		}
+		if (opr == 12) {
+			system("clear");
+			diff();
 		}
 	}
 	else {
@@ -359,20 +557,36 @@ wlc() {
 	}
 
 		if (opr == 1) {
-			system("clear");
 			dis_1();
 		}
 		if (opr == 2) {
 			system("clear");
 			pol();
 		}
+		if (opr == 3) {
+			system("clear");
+			qua();
+		}
+
 		if (opr == 4) {
 			system("clear");
 			mircor();
 		}
+		if (opr == 5) {
+			system("clear");
+			dis_2();
+		}
 		if (opr == 7) {
 			system("clear");
 			eqgen();
+		}
+		if (opr == 9) {
+			system("clear");
+			slopeq();
+		}
+		if (opr == 12) {
+			system("clear");
+			diff();
 		}
 
 	}
@@ -386,7 +600,9 @@ wlc() {
 int main() {
     int opts;
     char close;
-    printf("Press 1 to Sign in and 2 to Sign up\n");
+    printf("Hey Anon, Welcome to Linear Equations and Function Analysis!\nA coordinate geometry Calculator and Function Analyzer.\n\n");
+    printf("1. Sign In\n2. Sign Up\n3. Continue as Anon (calculation history will not be saved)\n4. Docs\n\n");
+    printf("enter the number before the options to operate the program: ");
     scanf("%d",&opts);
 
     if (opts == 1){
@@ -395,6 +611,9 @@ int main() {
 
     if (opts == 2) {
         reg();
+    }
+	if (opts == 3) {
+        wlc();
     }
 // sqrt(9); sqrt function doesnt work
 }
