@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #include <string.h>
 #include <math.h>
 
@@ -474,6 +475,108 @@ diff() {
 
 }
 
+angle()
+{
+     printf("\n================================================================\n");
+    printf("\tAngle made by the point with respect to x & y axis.");
+    printf("\n=================================================================\n\n");
+    printf("Enter the X and Y coordinates : ");
+    setlocale(LC_ALL, "");
+
+    double x ,y ,hor = 0, lob = 0, b = 0.596227, k=0, theta = 0 , k2 =0;
+
+    scanf("%lf %lf",&x,&y);
+    k = y/x;
+    k2 = k*k;
+    lob = (b*k) + k2;
+    hor = (1+(2*b*k) + k2);
+    theta = lob/hor;
+    theta = theta * 90;
+
+    char ch=248;
+    printf("Angle : %.2lf%c",theta,ch);
+
+    printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
+    int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        angle();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+
+}
+
+
+invelyz () {
+
+    int budget,n,i,tot=0, product_count[10000];
+    double ivst, pricedata[10000], invested, invested_1, sell_price,x,y,z,profit,pro_sim = 0,rem_blnc = 0;
+    printf("Welcome to Business Analysis\n");
+    printf("Instructions:\n1. Enter your total budget\n");
+    printf("2.Enter the number of products you are intend to sell\n");
+    printf("\033[32m(i.e. If you are planning to sell {A,B,C} then number of products is 3)\n");
+    printf("\033[0m3. Enter Price per product\n");
+    printf("4. Enter product counts\n");
+    printf("5. Enter the percentage amount of your needed profit\n");
+    printf("\n\n");
+    printf("Enter Your Budget: ");
+    scanf("%d", &budget);
+    printf("Number of Products: ");
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++) {
+        printf("\033[0mPrice of product %d: ", i);
+        scanf("%lf", &pricedata[i]);
+        printf("\033[0mQuantity of product %d: ", i);
+        scanf("%d", &product_count[i]);
+        ivst = pricedata[i]*product_count[i];
+        invested += ivst;
+        rem_blnc = budget - invested;
+
+        if (rem_blnc == 0 || pricedata[i+1] > rem_blnc) {
+            printf("\033[31m\nBUDGET EXCEEDED OR NO INVESTMENT LEFT\n\n");
+            break;
+            }
+            else {
+                tot++;
+                printf("\033[35mRemaining Balance: %.2lf\n", rem_blnc);
+            }
+
+    }
+    printf("\033[0m=======================\n");
+    for (i = 1; i<= tot; i++) {
+        ivst = pricedata[i]*product_count[i];
+        printf("\033[0mPrice of product %d is %.2lf\n", i, pricedata[i]);
+        printf("\033[0mQuantity of product %d is %d\n", i, product_count[i]);
+        printf("\033[0mTotal Price of product %d is %.2lf\n", i, ivst);
+        printf("\033[0m------------------------------------------\n");
+        invested_1 += ivst;
+        if (pricedata[i] == 0) break;
+    }
+    printf("\033[32mTotal Invested: %.2lf\n", invested_1);
+
+    printf("\033[0m=======================\n\n");
+    printf("\033[0mHow much profit do you want?\n");
+    scanf("%lf", &profit);
+    pro_sim = profit/100;
+    sell_price = invested_1 + (invested_1*pro_sim);
+    printf("\033[33mTotal Selling Price should be: %.2lf\n", sell_price);
+
+
+
+
+    //20% code done. more to write
+
+
+}
+
 
 wlc() {
 	int opr;
@@ -535,6 +638,10 @@ wlc() {
 			system("clear");
 			dis_2();
 		}
+		if (opr == 6) {
+			system("clear");
+			angle();
+		}
 		if (opr == 7) {
 			system("clear");
 			eqgen();
@@ -546,6 +653,10 @@ wlc() {
 		if (opr == 12) {
 			system("clear");
 			diff();
+		}
+		if (opr == 14) {
+			system("clear");
+			invelyz();
 		}
 	}
 	else {
@@ -576,6 +687,10 @@ wlc() {
 			system("clear");
 			dis_2();
 		}
+		if (opr == 6) {
+			system("clear");
+			angle();
+		}
 		if (opr == 7) {
 			system("clear");
 			eqgen();
@@ -587,6 +702,10 @@ wlc() {
 		if (opr == 12) {
 			system("clear");
 			diff();
+		}
+		if (opr == 14) {
+			system("clear");
+			invelyz();
 		}
 
 	}
@@ -602,8 +721,24 @@ int main() {
     char close;
     printf("Hey Anon, Welcome to Linear Equations and Function Analysis!\nA coordinate geometry Calculator and Function Analyzer.\n\n");
     printf("1. Sign In\n2. Sign Up\n3. Continue as Anon (calculation history will not be saved)\n4. Docs\n\n");
-    printf("enter the number before the options to operate the program: ");
+    printf("Enter the number before the options to operate the program: ");
     scanf("%d",&opts);
+    while (opts > 4) {
+        printf("INVALID OPTION!!\n");
+        printf("Enter the number before the options to operate the program: ");
+        scanf("%d",&opts);
+    }
+
+    if (opts == 1){
+        in();
+
+    if (opts == 2) {
+        reg();
+    }
+	if (opts == 3) {
+        wlc();
+    }
+    }
 
     if (opts == 1){
         in();
