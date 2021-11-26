@@ -576,42 +576,60 @@ invelyz () {
 
 
 }
+landing() {
+    int ch;
+    printf("\n\n\t\t\033[36mWelcome to Analysis of Functions and Linear Equations\033[0m\n\n");
+	printf("\t** This program is designed to calculate mathematical expressions\n\tand analyzing mathematical functions.\n\n");
 
+	printf("\tThe number before each option is the number you have to input\n\tin order to select.\n\t\e[3m(If you want to continue to Menu page, press 1 and\n\thit enter.)\n\n");
+	printf("\e[0m\n\t---------------------------------------\n\n\n");
+	printf("\n\t\t[1] I Understand and continue\n\t\t[2] Read full Documentation\n\t\t[0] Log out / Exit\n");
+	printf("\t\t");scanf("%d", &ch);
+	if ( ch == 1) {
+            system("clear");
+            wlc();
+            }
+	if (ch == 2) {
+            system("clear");
+            dis_1();
+            }
+	if (ch == 0) {
+            system("clear");
+            main();
+            }
+}
 
 wlc() {
 	int opr;
-    printf("Welcome to Analysis of Functions and Linear Equations\n\n");
-	printf("** This program is designed to calculate mathematical expressions and analyzing mathematical functions.\n\n");
-	printf("\n--------------\n   Menu\n--------------\n\n");
-	printf("The number before each option is the number you have to input in order to select.\n(If you want to select option 3, just enter 3)\n\n");
-	printf("*Coordinate Geometry\n");
-	printf("1. Distance between two points\n");
-	printf("2. Polar to Cartesian Conversion\n");
-	printf("3. Quadrant of a Coordinate\n");
-	printf("4. Mirror of a point\n");
-	printf("5. Distance of a Coordinate from O(0,0)\n");
-	printf("6. Angle made by the point with respect to x & y axis.\n");
-	printf("\n\n*Straight Lines\n");
-	printf("7. St. Line Equation Generator\n");
-	printf("8. Distance between two st. lines\n");
-	printf("9. Slope of a st. Line\n");
-	printf("10. Intersect Point of two st. lines\n");
-	printf("\n\n*Curves Analysis\n");
-	printf("11. Maxima & Minima of a Function\n");
-	printf("12. Differentiation of a Function\n");
-	printf("13. Area of a Function binded by x=a,y=b\n");
-	printf("\n\n*Business Analysis Using Linear programming\n");
-	printf("14. Invest Analysis\n");
-	printf("15. Profit Diagram\n");
+	printf("\n\t----------------\n\t      Menu\n\t----------------\n\n");
+	printf("\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n");
+	printf("\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n");
+	printf("\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n");
+	printf("\t\033[35m\e[1m[3]\033[0m\e[0m  Quadrant of a Coordinate\n");
+	printf("\t\033[35m\e[1m[4]\033[0m\e[0m  Mirror of a point\n");
+	printf("\t\033[35m\e[1m[5]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n");
+	printf("\t\033[35m\e[1m[6]\033[0m\e[0m  Angle made by the point with respect to x & y axis.\n");
+	printf("\n\n\033[36m\t\e[1mStraight Lines\033[0m\e[0m\n");
+	printf("\t\033[36m\e[1m[7]\033[0m\e[0m  St. Line Equation Generator\n");
+	printf("\t\033[36m\e[1m[8]\033[0m\e[0m  Distance between two st. lines\n");
+	printf("\t\033[36m\e[1m[9]\033[0m\e[0m  Slope of a st. Line\n");
+	printf("\t\033[36m\e[1m[10]\033[0m\e[0m Intersect Point of two st. lines\n");
+	printf("\n\n\033[33m\t\e[1mCurves Analysis\033[0m\e[0m\n");
+	printf("\t\033[33m\e[1m[11]\033[0m\e[0m  Maxima & Minima of a Function\n");
+	printf("\t\033[33m\e[1m[12]\033[0m\e[0m  Differentiation of a Function\n");
+	printf("\t\033[33m\e[1m[13]\033[0m\e[0m  Area of a Function binded by x=a,y=b\n");
+	printf("\n\n\033[32m\t\e[1mBusiness Analysis\033[0m\e[0m\n");
+	printf("\t\033[32m\e[1m[14]\033[0m\e[0m  Invest Analysis\n");
+	printf("\t\033[32m\e[1m[15]\033[0m\e[0m  Profit Diagram\n");
 	printf("\n\n");
-	printf("0. Log Out / Exit\n\n");
+	printf("\t\033[31m\e[1m[0]\033[0m\e[0m  Log Out / Exit\n\n");
     while ( opr > 15) {
-	printf("---------------------\nChoose Operation: "); scanf("%d",&opr);
-	printf("---------------------\n");
+	printf("\t---------------------\n\tChoose Operation: "); scanf("%d",&opr);
+	printf("\r---------------------\n");
 	if (opr >= 15) {
-		printf("\n\nINVALID OPERATION!!!\n\n");
-		printf("---------------------\n\nChoose Operation: "); scanf("%d",&opr);
-	printf("---------------------\n");
+		printf("\n\n\tINVALID OPERATION!!!\n\n");
+		printf("\t---------------------\n\n\tChoose Operation: "); scanf("%d",&opr);
+	printf("\t---------------------\n");
 
 		if (opr == 0) {
 		system("clear");
@@ -720,8 +738,8 @@ int main() {
     int opts;
     char close;
     printf("\n\n\t\t\t\t=============\n\t\t\t\t    \e[1mLEFAN\e[0m\n\t\t\t\t=============\n\n");
-    printf("\n\tHey Anon, Welcome to Linear Equations and Function Analysis!\n\tA coordinate geometry Calculator and Function Analyzer.\n\n");
-    printf("\t   \033[36m[1] Sign in\n\t   [2] Sign up\n\t   [3] Continue as Anon (calculation history will not be saved)\n\t   [4] Docs\033[0m\n\n");
+    printf("\n\tHey \033[32mAnon\033[0m, Welcome to Linear Equations and Function Analysis!\n\tA coordinate geometry Calculator and Function Analyzer.\n\n");
+    printf("\t   \033[36m[1] Sign in\n\t   [2] Sign up\n\t   [3] Continue as \033[32mAnon\033[36m (calculation history will not be saved)\n\t   [4] Docs\033[0m\n\n");
     printf("\tEnter the \e[1mnumber \e[0mbefore the options to operate the program: ");
     scanf("%d",&opts);
     while (opts > 4) {
@@ -740,7 +758,7 @@ int main() {
     }
 	if (opts == 3) {
 	    system("clear");
-        wlc();
+        landing();
     }
     }
 
@@ -755,7 +773,7 @@ int main() {
     }
 	if (opts == 3) {
 	    system("clear");
-        wlc();
+        landing();
     }
 // sqrt(9); sqrt function doesnt work
 }
