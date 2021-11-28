@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <string.h>
 #include <math.h>
+// #include <windows.h>  //uncomment it if the program is being run on windows os
 
 struct usr {
     char name[50];
@@ -415,8 +416,8 @@ dis_2()
 
 diff() {
 
-    int a=0,b=0,c=0,d,e,mp,n,var,terms;
-    char chars, sign1, sign2,sign;
+    int a=0,b=0,c=0,d,e,mp,n,var,terms,i,j;
+    char chars, sign1, sign2,sign,sign3;
     char powr;
     printf("Enter MAX power of X: ");
     scanf("%d",&mp);
@@ -441,20 +442,45 @@ diff() {
         sign2 = '-';
         ara[3] = -ara[3];
     }
+    if ( ara[4] >= 0 ) {
+        sign3 = '+';
+    }
+    if ( ara[4] < 0 ){
+        sign3 = '-';
+        ara[4] = -ara[4];
+    }
     printf("--------------------------\n");
-    printf("The Equation is y = %dx^%d %c %dx^%d %c %d\n", ara[1],mp,sign,ara[2],(mp-1),sign2,ara[3]);
-    printf("--------------------------\n");
-    printf("DIFFERENTIATION of Y:\n");
-    printf("--------------------------\n");
-    a = ara[1]*mp;
-    b = ara[2];
     if ( mp == 1) {
-    printf("dy/dx = %dx\n", 2*a);
+            printf("The Equation is y = %dx %c %d\n", ara[1], sign, ara[2]);
+            printf("--------------------------\n");
+            printf("DIFFERENTIATION of Y:\n");
+            printf("--------------------------\n");
+            a = ara[1]*mp;
+            printf("dy/dx = %d\n", a);
+            printf("--------------------------\n");
+            }
+    if(mp == 2){
+            printf("The Equation is y = %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],sign2,ara[3]);
+
+            printf("--------------------------\n");
+            printf("DIFFERENTIATION of Y:\n");
+            printf("--------------------------\n");
+            a = ara[1]*mp;
+            b = ara[2];
+            printf("dy/dx = %dx %c %d\n", a,sign,b);
+            printf("--------------------------\n");
     }
-    else {
-    printf("dy/dx = %dx %c %d\n", a,sign,b);
+
+    if (mp == 3) {
+            printf("The Equation is y = %dx^%d %c %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],(mp-1),sign2,ara[3], sign3, ara[4]);
+            printf("--------------------------\n");
+            printf("DIFFERENTIATION of Y:\n");
+            printf("--------------------------\n");
+            a = ara[1]*mp;
+            b = ara[2];
+            printf("dy/dx = %dx^2 %c %dx %c %d\n", a,sign,2*b,sign2,ara[3]);
+            printf("--------------------------\n");
     }
-    printf("--------------------------\n");
 
     int choose;
 	printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n");
