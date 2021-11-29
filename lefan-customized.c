@@ -72,9 +72,9 @@ in() {
 
 dis_1() {
 	double sqrt = 0, a,b,c,d,s1=0,s2=0,s3=0,root=0;
-	FILE *history;
-    history = fopen("calculation_history_universal.txt", "w");
-    fputs("User opened Distance between two points\n",history);
+	//FILE *history;
+    //history = fopen("calculation_history_universal.txt", "w");
+    //fputs("User opened Distance between two points\n",history);
 	printf("\n========================================\n");
 	printf("Distance between two points");
 	printf("\n========================================\n\n");
@@ -102,21 +102,21 @@ dis_1() {
 		dis_1();
 	}
 	if (choose == 2) {
-	    fclose(history);
+	    //fclose(history);
 		system("clear");
 		wlc();
 	}
 	if (choose == 0) {
-        fclose(history);
+        //fclose(history);
 		system("clear");
 		main();
 	}
 }
 
 pol() {
-    FILE *history;
-    history = fopen("calculation_history_universal.txt", "w");
-    fputs("User opened Cartesian to Polar Conversion\n",history);
+    //FILE *history;
+    //history = fopen("calculation_history_universal.txt", "w");
+    //fputs("User opened Cartesian to Polar Conversion\n",history);
 	double x,y,theta=0,r=0;
     double pi = 3.1416, k = 0, k2 = 0, b = 0.596227,s3=0,sqrt=0,hor=0,lob=0;
     int choose;
@@ -149,16 +149,16 @@ pol() {
 	scanf("%d",&choose);
 
 	if (choose == 1) {
-        fclose(history);
+        //fclose(history);
 		pol();
 	}
 	if (choose == 2) {
-        fclose(history);
+        //fclose(history);
 		system("clear");
 		wlc();
 	}
 	if (choose == 0) {
-        fclose(history);
+        //fclose(history);
 		system("clear");
 		main();
 	}
