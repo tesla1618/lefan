@@ -3,6 +3,7 @@
 #include <locale.h>
 #include <string.h>
 #include <math.h>
+#include <ncurses.h>
 // #include <windows.h>  //uncomment it if the program is being run on windows os
 
 struct usr {
@@ -71,7 +72,9 @@ in() {
 
 dis_1() {
 	double sqrt = 0, a,b,c,d,s1=0,s2=0,s3=0,root=0;
-
+	FILE *history;
+    history = fopen("calculation_history_universal.txt", "w");
+    fputs("User opened Distance between two points\n",history);
 	printf("\n========================================\n");
 	printf("Distance between two points");
 	printf("\n========================================\n\n");
@@ -99,22 +102,27 @@ dis_1() {
 		dis_1();
 	}
 	if (choose == 2) {
+	    fclose(history);
 		system("clear");
 		wlc();
 	}
 	if (choose == 0) {
+        fclose(history);
 		system("clear");
 		main();
 	}
 }
 
 pol() {
+    FILE *history;
+    history = fopen("calculation_history_universal.txt", "w");
+    fputs("User opened Cartesian to Polar Conversion\n",history);
 	double x,y,theta=0,r=0;
     double pi = 3.1416, k = 0, k2 = 0, b = 0.596227,s3=0,sqrt=0,hor=0,lob=0;
     int choose;
 
 	printf("\n========================================\n");
-	printf("Polar to Cartesian Conversion");
+	printf("Cartesian to Polar Conversion");
 	printf("\n========================================\n\n");
 
     printf("Enter the X and Y coordinates : ");
@@ -141,13 +149,16 @@ pol() {
 	scanf("%d",&choose);
 
 	if (choose == 1) {
+        fclose(history);
 		pol();
 	}
 	if (choose == 2) {
+        fclose(history);
 		system("clear");
 		wlc();
 	}
 	if (choose == 0) {
+        fclose(history);
 		system("clear");
 		main();
 	}
@@ -419,13 +430,16 @@ diff() {
     int a=0,b=0,c=0,d,e,mp,n,var,terms,i,j;
     char chars, sign1, sign2,sign,sign3,sign4,sign5,sign6,sign7,sign8,sign9,sign10,sign11;
     char powr;
-    printf("Enter MAX power of X: ");
+    printf("\n\033[35m\t\e[1mDifferentiate a Function\033[0m\e[0m\n");
+    printf("\tA function is defined as follows ax^n+bx^(n-1)+cx^(n-2)....+z\n");
+    printf("\n");
+    printf("\tEnter MAX power (n) of x (x^n): ");
     scanf("%d",&mp);
     terms = mp+1;
     int ara[terms];
-    printf("Enter %d Constant values:\n", terms);
+    printf("\tEnter %d Constant values:\n", terms);
     for (n = 1, chars = 'a'; n<=terms &&  chars <= 'z'; n++, ++chars) {
-        printf("%c: ",chars);
+        printf("\t %c: ",chars);
         scanf("%d",&ara[n]);
     }
     if ( ara[2] > 0 ) {
@@ -498,92 +512,92 @@ diff() {
         sign10 = '-';
         ara[11] = -ara[11];
     }
-    printf("--------------------------\n");
+    printf("\n\t--------------------------\n");
     if ( mp == 1) {
-            printf("The Equation is y = %dx %c %d\n", ara[1], sign, ara[2]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
+            printf("\tThe Equation is y = %dx %c %d\n", ara[1], sign, ara[2]);
+            printf("\t--------------------------\n");
+            printf("\n\tDIFFERENTIATION of Y:\n");
             printf("--------------------------\n");
             a = ara[1]*mp;
-            printf("dy/dx = %d\n", a);
-            printf("--------------------------\n");
+            printf("\tdy/dx = %d\n", a);
+            printf("\t--------------------------\n");
             }
     if(mp == 2){
-            printf("The Equation is y = %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],sign2,ara[3]);
+            printf("\tThe Equation is y = %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],sign2,ara[3]);
 
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
             a = ara[1]*mp;
             b = ara[2];
-            printf("dy/dx = %dx %c %d\n", a,sign,b);
-            printf("--------------------------\n");
+            printf("\tdy/dx = %dx %c %d\n", a,sign,b);
+            printf("\t--------------------------\n");
     }
 
     if (mp == 3) {
-            printf("The Equation is y = %dx^%d %c %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],(mp-1),sign2,ara[3], sign3, ara[4]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
+            printf("\tThe Equation is y = %dx^%d %c %dx^%d %c %dx %c %d\n", ara[1],mp,sign,ara[2],(mp-1),sign2,ara[3], sign3, ara[4]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
             a = ara[1]*mp;
             b = ara[2];
-            printf("dy/dx = %dx^2 %c %dx %c %d\n", a,sign,2*b,sign2,ara[3]);
-            printf("--------------------------\n");
+            printf("\tdy/dx = %dx^2 %c %dx %c %d\n", a,sign,2*b,sign2,ara[3]);
+            printf("\t--------------------------\n");
     }
     if (mp == 4) {
-            printf("The Equation is y = %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
+            printf("\tThe Equation is y = %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
             a = ara[1]*mp;
             b = ara[2];
-            printf("dy/dx = %dx^3 %c %dx^2 %c %dx %c %d\n", 4*ara[1],sign,3*ara[2],sign2,2*ara[3],sign3,ara[4]);
-            printf("--------------------------\n");
+            printf("\tdy/dx = %dx^3 %c %dx^2 %c %dx %c %d\n", 4*ara[1],sign,3*ara[2],sign2,2*ara[3],sign3,ara[4]);
+            printf("\t--------------------------\n");
     }
     if (mp == 5) {
-            printf("The Equation is y = %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 5*ara[1],sign,4*ara[2],sign2,3*ara[3],sign3,2*ara[4],sign4,ara[5]);
-            printf("--------------------------\n");
+            printf("\tThe Equation is y = %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 5*ara[1],sign,4*ara[2],sign2,3*ara[3],sign3,2*ara[4],sign4,ara[5]);
+            printf("\t--------------------------\n");
     }
     if (mp == 6) {
-            printf("The Equation is y = %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 6*ara[1],sign,5*ara[2],sign2,4*ara[3],sign3,3*ara[4],sign4,2*ara[5],sign5,ara[6]);
-            printf("--------------------------\n");
+            printf("\tThe Equation is y = %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 6*ara[1],sign,5*ara[2],sign2,4*ara[3],sign3,3*ara[4],sign4,2*ara[5],sign5,ara[6]);
+            printf("\t--------------------------\n");
     }
     if (mp == 7) {
-            printf("The Equation is y = %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 7*ara[1],sign,6*ara[2],sign2,5*ara[3],sign3,4*ara[4],sign4,3*ara[5],sign5,2*ara[6],sign6,ara[7]);
-            printf("--------------------------\n");
+            printf("\tThe Equation is y = %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 7*ara[1],sign,6*ara[2],sign2,5*ara[3],sign3,4*ara[4],sign4,3*ara[5],sign5,2*ara[6],sign6,ara[7]);
+            printf("\t--------------------------\n");
     }
     if (mp == 8) {
-            printf("The Equation is y = %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 8*ara[1],sign,7*ara[2],sign2,6*ara[3],sign3,5*ara[4],sign4,4*ara[5],sign5,3*ara[6],sign6,2*ara[7],sign7,ara[8]);
+            printf("\tThe Equation is y = %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 8*ara[1],sign,7*ara[2],sign2,6*ara[3],sign3,5*ara[4],sign4,4*ara[5],sign5,3*ara[6],sign6,2*ara[7],sign7,ara[8]);
     }
     if (mp == 9) {
-            printf("The Equation is y = %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9],sign9,ara[10]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 9*ara[1],sign,8*ara[2],sign2,7*ara[3],sign3,6*ara[4],sign4,5*ara[5],sign5,4*ara[6],sign6,3*ara[7],sign7,2*ara[8],sign8,ara[9]);
+            printf("\tThe Equation is y = %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9],sign9,ara[10]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 9*ara[1],sign,8*ara[2],sign2,7*ara[3],sign3,6*ara[4],sign4,5*ara[5],sign5,4*ara[6],sign6,3*ara[7],sign7,2*ara[8],sign8,ara[9]);
     }
     if (mp == 10) {
-            printf("The Equation is y = %dx^10 %c %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9],sign9,ara[10],sign10,ara[11]);
-            printf("--------------------------\n");
-            printf("DIFFERENTIATION of Y:\n");
-            printf("--------------------------\n");
-            printf("dy/dx = %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 10*ara[1],sign,9*ara[2],sign2,8*ara[3],sign3,7*ara[4],sign4,6*ara[5],sign5,5*ara[6],sign6,4*ara[7],sign7,3*ara[8],sign8,2*ara[9],sign9,ara[10]);
+            printf("\tThe Equation is y = %dx^10 %c %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", ara[1],sign,ara[2],sign2,ara[3], sign3, ara[4], sign4, ara[5],sign5,ara[6],sign6,ara[7],sign7,ara[8],sign8,ara[9],sign9,ara[10],sign10,ara[11]);
+            printf("\t--------------------------\n");
+            printf("\tDIFFERENTIATION of Y:\n");
+            printf("\t--------------------------\n");
+            printf("\tdy/dx = %dx^9 %c %dx^8 %c %dx^7 %c %dx^6 %c %dx^5 %c %dx^4 %c %dx^3 %c %dx^2 %c %dx %c %d\n", 10*ara[1],sign,9*ara[2],sign2,8*ara[3],sign3,7*ara[4],sign4,6*ara[5],sign5,5*ara[6],sign6,4*ara[7],sign7,3*ara[8],sign8,2*ara[9],sign9,ara[10]);
     }
 
     int choose;
@@ -592,6 +606,7 @@ diff() {
 	scanf("%d",&choose);
 
 	if (choose == 1) {
+        system("clear");
 		diff();
 	}
 	if (choose == 2) {
@@ -607,7 +622,7 @@ diff() {
 
 angle()
 {
-     printf("\n================================================================\n");
+    printf("\n================================================================\n");
     printf("\tAngle made by the point with respect to x & y axis.");
     printf("\n=================================================================\n\n");
     printf("Enter the X and Y coordinates : ");
@@ -641,6 +656,13 @@ angle()
         system("clear");
         main();
     }
+
+}
+
+ntgrate () {
+    int a=0,b=0,c=0,d,e,mp,n,var,terms,i,j;
+
+
 
 }
 
@@ -730,6 +752,10 @@ landing() {
 }
 
 wlc() {
+
+    char sentence[1000];
+    FILE *history;
+    history = fopen("calculation_history_universal.txt", "w");
 	int opr;
 	printf("\n\t----------------\n\t      Menu\n\t----------------\n\n");
 	printf("\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n");
@@ -767,10 +793,14 @@ wlc() {
 	}
 
 		if (opr == 1) {
+            //fputs(history, "User opened Distance between two points\n");
+            //fclose(history);
 			system("clear");
 			dis_1();
 		}
 		if (opr == 2) {
+            //fputs(history, "User opened Cartesian to Polar Conversion\n");
+            //fclose(history);
 			system("clear");
 			pol();
 		}
@@ -816,9 +846,13 @@ wlc() {
 	}
 
 		if (opr == 1) {
+            //fputs("User opened Distance between two points\n",history);
+            //fclose(history);
 			dis_1();
 		}
 		if (opr == 2) {
+            //fputs(history, "User opened Cartesian to Polar Conversion\n");
+            //fclose(history);
 			system("clear");
 			pol();
 		}
@@ -858,11 +892,27 @@ wlc() {
 
 	}
 }
+
 }
 
 
+docs() {
 
+    printf("\n\033[35m\t\e[1mRead Me\033[0m\e[0m\n");
+    printf("\t\033[35m______________________________\033[0m\n\n");
+    printf("\n\033[35m\t\e[1mIntro\033[0m\e[0m\n");
+    printf("\tHello user, Thank you for using \e[1mLinear Equations & Function Analysis\e[0m\n");
+    printf("\tThis is a simple calculator that solves maths related to both\n\tLinear and Continious Functions. Since the");
+    printf(" beginnig of the\n\tjourney of our programming, we have been thinking of some ways\n\tto integrate programming with mathematics. We asked ");
+    printf("our course\n\tinstructors about it and later found out that programming and\n");
+    printf("\tMathematics are interconnected. So we started studying more about\n\tprogramming and started to solve problems on online platforms.\n\tAnd later by getting ");
+    printf("motivated by our CSE100 course instructor,\n\thonorable \e[1mMuhammad Mohsin Kabir\e[0m, We chose this very fun project.\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
 
+}
+// printf("\n");
 
 int main() {
     int opts;
@@ -890,6 +940,10 @@ int main() {
 	    system("clear");
         landing();
     }
+    if (opts == 4) {
+	    system("clear");
+        docs();
+    }
     }
 
     if (opts == 1){
@@ -904,6 +958,10 @@ int main() {
 	if (opts == 3) {
 	    system("clear");
         landing();
+    }
+    if (opts == 4) {
+	    system("clear");
+        docs();
     }
 // sqrt(9); sqrt function doesnt work
 }
