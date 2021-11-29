@@ -754,8 +754,8 @@ landing() {
 wlc() {
 
     char sentence[1000];
-    FILE *history;
-    history = fopen("calculation_history_universal.txt", "w");
+    //FILE *history;
+    //history = fopen("calculation_history_universal.txt", "w");
 	int opr;
 	printf("\n\t----------------\n\t      Menu\n\t----------------\n\n");
 	printf("\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n");
