@@ -3,7 +3,7 @@
 #include <locale.h>
 #include <string.h>
 #include <math.h>
-#include <ncurses.h>
+// #include <ncurses.h>
 // #include <windows.h>  //uncomment it if the program is being run on windows os
 
 struct usr {
@@ -667,6 +667,211 @@ ntgrate () {
 }
 
 
+isect() {
+    double a1,b1,c1,a2,b2,c2,x1=0,y1=0,d=0,xx=0,yy=0;
+    printf("Enter constant values for a1,b1,c1 respectively: ");
+    scanf("%lf %lf %lf",&a1,&b1,&c1);
+    printf("\n");
+    printf("Enter constant values for a2,b2,c2 respectively: ");
+    scanf("%lf %lf %lf",&a2,&b2,&c2);
+    printf("\n");
+    printf("The equation of the straight line (1) is: %.1lfx%+-.1lfy%+-.1lf = 0\n",a1,b1,c1);
+    printf("The equation of the straight line (2) is: %.1lfx%+-.1lfy%+-.1lf = 0\n",a2,b2,c2);
+    d = (a1*b2)-(b1*a2);
+    if (d > 0) {
+        xx = (b1*c2)-(b2*c1);
+        yy = (c1*a2)-(c2*a1);
+        x1 = xx/d;
+        y1 = yy/d;
+        printf("Intersect Point: (%.1lf , %.1lf)\n",x1,y1);
+    }
+    else printf("The Lines are parallel to each other, hence there is no Intersect point\n");
+
+
+     printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
+    int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        isect();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+}
+
+dis_st () {
+
+    int a1,b1,c1,a2,b2,c2;
+    double x1=0,y1=0,d=0,xx=0,yy=0,i,a=0,ax=0,b=0,bx=0,cc=0,ab,k,sqrt,m=0,m2=0,m12=0,mm=0;
+    printf("Enter constant values for a1,b1,c1 respectively: ");
+    scanf("%d %d %d",&a1,&b1,&c1);
+    printf("\n");
+    printf("Enter constant values for a2,b2,c2 respectively: ");
+    scanf("%d %d %d",&a2,&b2,&c2);
+    printf("\n");
+    printf("The equation of the straight line (1) is: %dx%+-dy%+-d = 0\n",a1,b1,c1);
+    printf("The equation of the straight line (2) is: %dx%+-dy%+-d = 0\n",a2,b2,c2);
+
+    if (a1 <0) a1 = (-1)*a1;
+    if (a2 <0) a2 = (-1)*a2;
+    if (b1 <0) b1 = (-1)*b1;
+    if (b2 <0) b2 = (-1)*b2;
+
+    //METHOD 1
+
+    if (a1==a2 && b1 == b2){
+        a = a1;
+        b = b1;
+
+        cc = c1-c2;
+    ab = (a*a)+(b*b);
+
+    sqrt = ab/2;
+	double temp = 0;
+    while(sqrt != temp){
+        temp = sqrt;
+        sqrt = ( ab/temp + temp) / 2;
+    }
+
+    if (cc <0 ) cc = (-1)*cc;
+    d = cc / sqrt;
+    printf("\nDistance: %.3lf units\n",d);
+    }
+
+   if (a1 != a2 && b1 != b2){
+    for (i = 1; ; i++) {
+
+        if (a2>a1 && b2 >b1 && c2>c1){
+            if (a2/i == a1 && b2/i == b1) {
+                a = a1;
+                b = b1;
+                c2 = c2/i;
+            }
+        if (a2/i == a1 || b2/i == b1) break;
+        }
+        if (a1>a2 && b1>b2 && c1>c2){
+            if (a1/i == a2 && b1/i == b2) {
+                a = a2;
+                b = b2;
+                c1 = c1/i;
+            }
+        if (a1/i == a2 || b1/i == b2) break;
+
+        }
+
+
+    }
+
+    cc = c1-c2;
+    ab = (a*a)+(b*b);
+
+    sqrt = ab/2;
+	double temp = 0;
+    while(sqrt != temp){
+        temp = sqrt;
+        sqrt = ( ab/temp + temp) / 2;
+    }
+
+    if (cc <0 ) cc = (-1)*cc;
+    d = cc / sqrt;
+    printf("\nDistance: %.3lf units\n",d);
+    }
+
+   /* if (a1 > a2) {
+        if (a1%a2 == 0) a = a2;
+        if (b1 > b2) {
+        if (b1%b2 == 0) b = b2;
+    }
+    }
+    if (a2 > a1) {
+        if (a2%a1 == 0) a = a1;
+        if (b2 > b1) {
+        if (b2%b1 == 0) b = b1;
+    }
+    } */
+
+
+/*
+    // METHOD 2
+
+    m = 1/a1;
+    m2 = m*m;
+    mm= 1+m2;
+    sqrt = mm/2;
+	double temp = 0;
+    while(sqrt != temp){
+        temp = sqrt;
+        sqrt = ( mmm/temp + temp) / 2;
+    }
+
+    cc = (c1/-c2;
+    if (cc <0 ) cc = (-1)*cc;
+    d = cc / sqrt;
+
+    printf("\nDistance: %.3lf units\n",sqrt);
+*/
+
+ printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
+int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        dis_st();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+
+}
+
+maxima() {
+
+    double a,b,c,x=0,y=0;
+    printf("Enter the values of a, b, c respectively: ");
+    scanf("%lf %lf %lf",&a,&b,&c);
+    printf("The function is y = %.1lfx^2%+-.1lfx%+-.1lf", a,b,c);
+    if ( a >0 ){
+            x = ((-1)*b)/(2*a);
+            y = (a*(x*x))+(b*x)+c;
+
+        printf("\n\nThe above function has minima value.\nThe minima coordinates are (%.3lf , %.3lf)",x,y);
+    }
+    else {
+        x = ((-1)*b)/(2*a);
+            y = (a*(x*x))+(b*x)+c;
+            printf("\n\nThe above function has maxima value.\nThe maxima coordinates are (%.3lf , %.3lf)",x,y);
+    }
+
+    printf("\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out\n");
+int choose;
+    scanf("%d",&choose);
+
+    if (choose == 1) {
+        maxima();
+    }
+    if (choose == 2) {
+        system("clear");
+        wlc();
+    }
+    if (choose == 0) {
+        system("clear");
+        main();
+    }
+
+
+}
+
 invelyz () {
 
     int budget,n,i,tot=0, product_count[10000];
@@ -692,7 +897,7 @@ invelyz () {
         invested += ivst;
         rem_blnc = budget - invested;
 
-        if (rem_blnc == 0 || pricedata[i+1] > rem_blnc) {
+        if (rem_blnc <= 0 || pricedata[i+1] >= rem_blnc) {
             printf("\033[31m\nBUDGET EXCEEDED OR NO INVESTMENT LEFT\n\n");
             break;
             }
@@ -702,8 +907,11 @@ invelyz () {
             }
 
     }
-    printf("\033[0m=======================\n");
-    for (i = 1; i<= tot; i++) {
+    int tot1=0;
+    if (rem_blnc == 0 ) tot1 = tot+1;
+    else tot1 = tot;
+    printf("\033[0m------------------------------------------\n");
+    for (i = 1; i<= tot1; i++) {
         ivst = pricedata[i]*product_count[i];
         printf("\033[0mPrice of product %d is %.2lf\n", i, pricedata[i]);
         printf("\033[0mQuantity of product %d is %d\n", i, product_count[i]);
@@ -714,17 +922,25 @@ invelyz () {
     }
     printf("\033[32mTotal Invested: %.2lf\n", invested_1);
 
-    printf("\033[0m=======================\n\n");
-    printf("\033[0mHow much profit do you want?\n");
+    printf("\033[0m=========================================\n\n");
+    printf("\033[0mHow much profit do you want? ");
     scanf("%lf", &profit);
     pro_sim = profit/100;
     sell_price = invested_1 + (invested_1*pro_sim);
-    printf("\033[33mTotal Selling Price should be: %.2lf\n", sell_price);
+    printf("\n\033[0m------------------------------------------\n");
+    printf("\n\033[33mTotal Selling Price should be: %.2lf\n", sell_price);
+    printf("\n\033[0m------------------------------------------\n");
+    double dsp = 0, dsp1 = 0;
+    dsp = sell_price-invested_1;
+    dsp1 = dsp/tot1;
+    for (i = 1; i<= tot1; i++) {
+        printf("\033[0mSell the product %d for %.2lf\n", i, (pricedata[i]*pro_sim)+pricedata[i]);
+        printf("\033[0m------------------------------------------\n");
+        //if (pricedata[i] == 0) break;
+    }
 
 
-
-
-    //20% code done. more to write
+    // it took a good amount of calculation
 
 
 }
@@ -824,9 +1040,21 @@ wlc() {
 			system("clear");
 			eqgen();
 		}
+		if (opr == 8) {
+			system("clear");
+			dis_st();
+		}
 		if (opr == 9) {
 			system("clear");
 			slopeq();
+		}
+		if (opr == 10) {
+			system("clear");
+			isect();
+		}
+		if (opr == 11) {
+			system("clear");
+			maxima();
 		}
 		if (opr == 12) {
 			system("clear");
@@ -877,9 +1105,21 @@ wlc() {
 			system("clear");
 			eqgen();
 		}
+		if (opr == 8) {
+			system("clear");
+			dis_st();
+		}
 		if (opr == 9) {
 			system("clear");
 			slopeq();
+		}
+		if (opr == 10) {
+			system("clear");
+			isect();
+		}
+		if (opr == 11) {
+			system("clear");
+			maxima();
 		}
 		if (opr == 12) {
 			system("clear");
