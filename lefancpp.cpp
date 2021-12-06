@@ -48,7 +48,7 @@ public:
 
     void reg()
     {
-        string uname, pword,up;
+        string uname, pword;
         cout<<"Username: ";
         cin>>uname;
         cout<<"Password: ";
@@ -57,15 +57,24 @@ public:
         file.open("Users/"+uname+".txt");
         file << uname <<endl << pword;
         file.close();
+        up = uname;
+        cout<<endl<<endl;
+        this_thread::sleep_for(chrono::milliseconds(600));
+        cout<<"\t\033[32mAccount Created! Signing in...\033[0m"<<endl;
+        this_thread::sleep_for(chrono::milliseconds(800));
+        cout<<endl;
+        system("clear");
+        umenu();
     }
     void in()
     {
         int opr;
         ofstream file;
         string uname, pword, u, p;
-        cout<<"Username: ";
+        cout<<"\033[35m\t\e[1mExisting User Login\033[0m\e[0m"<<endl<<endl;
+        cout<<"\t | Username: ";
         cin>>uname;
-        cout<<"Password: ";
+        cout<<"\t | Password: ";
         cin>>pword;
         ifstream read("Users/"+uname+".txt");
         getline(read, u);
@@ -82,7 +91,17 @@ public:
             system("clear");
             umenu();
         }
-        else cout<<"Error";
+        else {
+                cout<<endl;
+            this_thread::sleep_for(chrono::milliseconds(600));
+        cout<<"\t\033[31mIncorrect Information\033[0m"<<endl;
+        this_thread::sleep_for(chrono::milliseconds(800));
+        cout<<endl;
+        system("clear");
+        in();
+
+        }
+
     }
 
     void dis_1()
@@ -138,17 +157,23 @@ public:
         cout<<endl<<"Polar (r,theta) : ("<<r<<","<<theta<<")"<<endl;
         cout<<endl;
 
-        int choose;
+        int choose,any;
+        any = ay;
         cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
         cin>>choose;
         if (choose == 1)
         {
             pol();
         }
-        if (choose == 2)
+        if (choose == 2&& any == 0)
         {
             system("clear");
             umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
         }
         if (choose == 0)
         {
@@ -190,17 +215,23 @@ public:
     }
     cout<<endl<<endl;
 
-    int choose;
+    int choose,any;
+    any=ay;
         cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
         cin>>choose;
         if (choose == 1)
         {
             diff();
         }
-        if (choose == 2)
+        if (choose == 2&& any == 0)
         {
             system("clear");
             umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
         }
         if (choose == 0)
         {
@@ -224,16 +255,22 @@ public:
    cout<<"\tDistance of ("<<x<<","<<y<<") from O(0,0) : "<<dis<<" units."<<endl<<endl;
 
    cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit"<<endl;
-    int choose;
+    int choose,any;any=ay;
     cin>>choose;
 
     if (choose == 1) {
         dis_2();
     }
-    if (choose == 2) {
-        system("clear");
-        umenu();
-    }
+    if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+    if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
     if (choose == 0) {
         system("clear");
         main1();
@@ -277,7 +314,8 @@ public:
     }
 
 
-    int choose;
+    int choose,any;
+    any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
 	cin>>choose;
@@ -285,10 +323,16 @@ public:
 	if (choose == 1) {
 		slopeq();
 	}
-	if (choose == 2) {
-		system("clear");
-		umenu();
-	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
 	if (choose == 0) {
 		system("clear");
 		main1();
@@ -343,18 +387,25 @@ void qua()
    }
 
 
-       int choose;
+       int choose,any;
 	cout<<endl<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
 	cin>>choose;
+	any = ay;
 
 	if (choose == 1) {
 		qua();
 	}
-	if (choose == 2) {
-		system("clear");
-		umenu();
-	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
 	if (choose == 0) {
 		system("clear");
 		main1();
@@ -454,7 +505,7 @@ void mircor ()
 	}
 
 
-	 int choose;
+	 int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
 	cin>>choose;
@@ -462,10 +513,16 @@ void mircor ()
 	if (choose == 1) {
 		mircor();
 	}
-	if (choose == 2) {
-		system("clear");
-		umenu();
-	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
 	if (choose == 0) {
 		system("clear");
 		main1();
@@ -538,7 +595,7 @@ void invelyz (){
         //if (pricedata[i] == 0) break;
     }
 
-    int choose;
+    int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
 	cin>>choose;
@@ -546,10 +603,327 @@ void invelyz (){
 	if (choose == 1) {
 		invelyz();
 	}
-	if (choose == 2) {
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+	if (choose == 0) {
 		system("clear");
-		umenu();
+		main1();
 	}
+}
+
+void isect()
+ {
+    double a1,b1,c1,a2,b2,c2,x1=0,y1=0,d=0,xx=0,yy=0;
+    cout<<"\tEnter constant values for a1,b1,c1 respectively: ";
+    cin>>a1>>b1>>c1;
+    cout<<"\n";
+    cout<<"\tEnter constant values for a2,b2,c2 respectively: ";
+    cin>>a2>>b2>>c2;
+    cout<<"\n";
+    cout<<"\tThe equation of the straight line (1) is: "<<a1<<"x"<<std::showpos<<b1<<"y"<<c1 <<"= 0\n";
+    cout<<"\tThe equation of the straight line (2) is: "<<std::noshowpos<<a2<<"x"<<std::showpos<<b2<<"y"<<c2 <<"= 0\n"<<endl;
+
+    d = (a1*b2)-(b1*a2);
+    if (a1*b2 != a2*b1) {
+        xx = (b1*c2)-(b2*c1);
+        yy = (c1*a2)-(c2*a1);
+        x1 = xx/d;
+        y1 = yy/d;
+       cout<<"\tIntersect Point: ("<<std::noshowpos<<x1<<","<<y1<<")"<<endl;
+    }
+    else cout<<"\tThe Lines are parallel to each other, hence there is no Intersect point"<<endl;
+
+
+
+ int choose,any;any=ay;
+	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+
+	cin>>choose;
+
+	if (choose == 1) {
+		isect();
+	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+	if (choose == 0) {
+		system("clear");
+		main1();
+	}
+ }
+
+
+
+void ntgrate ()
+{
+    system("clear");
+    int a=0,b=0,c=0,d,e,mp,n,var,terms,i,j;
+    char chars, sign1, sign2,sign,sign3,sign4,sign5,sign6,sign7,sign8,sign9,sign10,sign11;
+    char powr;
+    cout<<"\n\033[35m\t\e[1mIntigrate a Function\033[0m\e[0m\n";
+    cout<<"\n";
+    cout<<"\tIntegration of a Function is limited to only one term\n";
+    cout<<"\tEnter the power (n) of x (x^n): ";
+    cin>>mp;
+    terms = mp+1;
+    int ara[terms],cont;
+    cout<<"\tEnter Constant value with x (if no, enter 1): ";
+    cin>>cont;
+
+
+
+            cout<<"\n\t--------------------------\n";
+            cout<<"\tThe Equation is y = "<<cont<<"x^"<<mp<<endl;
+            cout<<"\t--------------------------\n";
+            cout<<"\tINTEGRATION of Y:\n";
+            cout<<"\t--------------------------\n";
+            cout<<"\tint(y) dx = ("<<cont<<"/"<<mp+1<<")*x^"<<mp+1<<endl;
+
+    int choose,any;any=ay;
+	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+
+	cin>>choose;
+
+	if (choose == 1) {
+		ntgrate();
+	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+	if (choose == 0) {
+		system("clear");
+		main1();
+	}
+
+}
+
+
+void pdig() {
+
+    {
+
+    double price,oprice,pdiff;
+    int a,b,c,d,e,f,g,h,i,j,k,l,choose,any;any=ay;
+
+    cout<<"\tWelcome to Profit Diagram"<<endl;
+    cout<<"\tIf you are running a shop and you have some good amount of\n\tcompetitors around you, calculate the\n\tprobability if you can attract more customers\n\tby your servuce!"<<endl;
+
+    cout<<endl<<"\tEnter the price of your most iconic product: ";
+    cin>>price;
+    cout<<endl<<"\tEnter 1 if yes/true and 0 if no/false: "<<endl;
+    cout<<endl<<"\tIs there any other shop selling this product? ";
+    cin>>a;
+    if (a >0 ){
+    cout<<"\tWhats the price of the product they are selling for? ";
+    cin>>oprice;
+    cout<<"\tDo they provide any warranty/after sales service? ";
+    cin>>b;
+    cout<<"\tDo you provide any warranty/after sales service? ";
+    cin>>c;
+    cout<<"\tAre they providing any offers with the product? ";
+    cin>>d;
+    cout<<"\tAre you providing any offers with the product? ";
+    cin>>e;
+    cout<<"\tWhich shop is more organized and\n\tconsumer friendly? "<<endl;
+    cout<<"\tType 1 if yours, 0 if theirs: ";
+    cin>>f;
+    pdiff = oprice - price;
+
+    int fb,fc,fd,fe,ff,pl;
+    fb = b*30;
+    fc = c*30;
+    fd = d*40;
+    fe = e*40;
+    if (f == 1) {
+        ff = f*20;
+    }
+    if (f == 0) {
+        ff = 0;
+    }
+    if (pdiff > 0) {
+        pl = 10;
+    }
+    if (pdiff < 0 ) {
+        pl = -8;
+    }
+    if (pdiff == 0){
+        if (c+e+f > b+d+1) {
+            pl = 5;
+        }
+        if (c+e+f < b+d+1) {
+            pl = 0;
+        }
+    }
+
+    int sum = 0;
+    sum = fc + fe + ff+pl;
+    cout<<endl<<"\tYou will Attract "<<sum<<" percent of the customers!"<<endl<<endl;;
+    }
+    else {
+        cout<<"\tYou are the only player in the field, Play as you like!!"<<endl<<endl;
+    }
+
+
+    cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out"<<endl;
+    cin>>choose;
+
+    if (choose == 1) {
+            system("clear");
+            pdig();
+    }
+    if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+    if (choose == 0) {
+        system("clear");
+        main1();
+    }
+
+}
+
+}
+
+
+
+void maxima(){
+    system("clear");
+    double a,b,c,x=0,y=0;
+    cout<<"Enter the values of a, b, c respectively: "<<endl;
+    cin>>a>>b>>c;
+    cout<<"The function is y = "<<a<<"x^2"<<std::showpos<<b<<"x"<<std::showpos<<c<<endl;
+    if ( a >0 ){
+            x = ((-1)*b)/(2*a);
+            y = (a*(x*x))+(b*x)+c;
+
+        cout<<"The above function has minima value.\nThe minima coordinates are ("<<x<<","<<y<<")"<<endl;
+    }
+    else {
+        x = ((-1)*b)/(2*a);
+            y = (a*(x*x))+(b*x)+c;
+            cout<<"The above function has maxima value"<<"The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
+    }
+
+    cout<<endl<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out"<<endl;
+int choose,any;any=ay;
+    cin>>choose;
+
+    if (choose == 1) {
+        maxima();
+    }
+    if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+    if (choose == 0) {
+        system("clear");
+        main1();
+    }
+
+
+}
+
+void angle()
+{
+    system("clear");
+   cout<<"\n\t================================================================\n";
+     cout<<"\tAngle made by the point with respect to x & y axis.";
+     cout<<"\n\t=================================================================\n\n";
+     cout<<"\tEnter the X and Y coordinates : ";
+    setlocale(LC_ALL, "");
+
+    double x ,y ,hor = 0, lob = 0, b = 0.596227, k=0, theta = 0 , k2 =0;
+
+    cin>>x>>y;
+    k = y/x;
+    theta = atan(k);
+    theta = theta * 57.29577;
+    cout<<"\tAngle made by ("<<x<<","<<y<<") is "<<theta<<"degrees"<<endl;
+
+    int choose,any;any=ay;
+	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+
+	cin>>choose;
+
+	if (choose == 1) {
+		angle();
+	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+	if (choose == 0) {
+		system("clear");
+		main1();
+	}
+}
+
+void eqgen(){
+    system("clear");
+    double x1,y1,x2,y2,a,b;
+    cout<<"Enter x1,y1,x2,y2 respectively: "; cin>>x1>>y1>>x2>>y2;
+    a = x1-x2;
+    b = y1-y2;
+    cout<<endl<<"\tEquation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;
+
+    int choose,any;any=ay;
+	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+
+	cin>>choose;
+
+	if (choose == 1) {
+		eqgen();
+	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
 	if (choose == 0) {
 		system("clear");
 		main1();
@@ -557,11 +931,48 @@ void invelyz (){
 }
 
 
+void car()
+{
+    system("clear");
+	 double x, y, r, theta,PI = 3.1416;
 
+	 cout<<"Enter radius of polar coordinate (r): ";
+	 cin>>r;
+	 cout<<"Enter angle of polar coordinate in degree (theta): ";
+	 cin>>theta;
 
+	 theta = theta * PI/180;
 
+	 x = r * cos(theta);
 
+	 y = r * sin(theta);
 
+	cout<<"Cartesian coordinates are (x,y) : (" << x<<"," << y<<")"<<endl;
+
+	int choose,any;any=ay;
+    cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+
+	cin>>choose;
+
+	if (choose == 1) {
+		car();
+	}
+	if (choose == 2&& any == 0)
+        {
+            system("clear");
+            umenu();
+        }
+        if (choose == 2&& any == 1)
+        {
+            system("clear");
+            anonmenu();
+        }
+	if (choose == 0) {
+		system("clear");
+		main1();
+	}
+
+}
 
 void umenu()
     {
@@ -574,25 +985,25 @@ void umenu()
         cout<<"\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n";
         cout<<"\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n";
         cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n";
-        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Quadrant of a Coordinate\n";
-        cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Mirror of a point\n";
-        cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
-        cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Angle made by the point with respect to x & y axis.\n";
+        cout<<"\t\033[36m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Quadrant of a Coordinate\n";
+        cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Mirror of a point\n";
+        cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
+        cout<<"\t\033[35m\e[1m[7]\033[0m\e[0m  Angle made by the point with respect to x & y axis.\n";
         cout<<"\n\n\033[36m\t\e[1mStraight Lines\033[0m\e[0m\n";
-        cout<<"\t\033[36m\e[1m[7]\033[0m\e[0m  St. Line Equation Generator\n";
-        cout<<"\t\033[36m\e[1m[8]\033[0m\e[0m  Distance between two st. lines\n";
+        cout<<"\t\033[36m\e[1m[8]\033[0m\e[0m  St. Line Equation Generator\n";
         cout<<"\t\033[36m\e[1m[9]\033[0m\e[0m  Slope of a st. Line\n";
         cout<<"\t\033[36m\e[1m[10]\033[0m\e[0m Intersect Point of two st. lines\n";
         cout<<"\n\n\033[33m\t\e[1mCurves Analysis\033[0m\e[0m\n";
         cout<<"\t\033[33m\e[1m[11]\033[0m\e[0m  Maxima & Minima of a Function\n";
         cout<<"\t\033[33m\e[1m[12]\033[0m\e[0m  Differentiation of a Function\n";
-        cout<<"\t\033[33m\e[1m[13]\033[0m\e[0m  Area of a Function binded by x=a,y=b\n";
+        cout<<"\t\033[33m\e[1m[13]\033[0m\e[0m  Integrate a Function\n";
         cout<<"\n\n\033[32m\t\e[1mBusiness Analysis\033[0m\e[0m\n";
         cout<<"\t\033[32m\e[1m[14]\033[0m\e[0m  Invest Analysis\n";
         cout<<"\t\033[32m\e[1m[15]\033[0m\e[0m  Profit Diagram\n";
         cout<<"\n\n";
-        cout<<"20. History"<<endl;
-        cout<<"\t\033[31m\e[1m[0]\033[0m\e[0m  Log Out ("<<uname<<")"<<endl<<endl;
+        cout<<"\t\033[35m\e[1m[20]\033[0m\e[0m  History"<<endl;
+        cout<<"\t\033[31m\e[1m[0]\033[0m\e[0m   Log Out ("<<uname<<")"<<endl<<endl;
         cout<<"\tChoose: ";
         cin>>opr;
         if (opr == 0)
@@ -603,24 +1014,31 @@ void umenu()
         if(opr ==1 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Opened Coordinate Geometry"<<endl;
+            outfile <<uname<<" Distance between two points"<<endl;
             dis_1();
 
         }
         if(opr ==2 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Opened Vector Geometry"<<endl;
+            outfile <<uname<<" Polar to Cartesian Conversion"<<endl;
             pol();
         }
         if(opr ==3 )
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Cartesian to Polar Conversion"<<endl;
+            car();
+
+        }
+        if(opr ==4 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
             outfile <<uname<<" Opened Quadrant of a Point"<<endl;
             qua();
 
         }
-        if(opr ==4 )
+        if(opr ==5 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
             outfile <<uname<<" Opened Mirror of a Point"<<endl;
@@ -628,17 +1046,41 @@ void umenu()
             mircor();
 
         }
-        if(opr ==7 )
+        if(opr ==6 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
             outfile <<uname<<" Distance of a Coordinate from O(0,0)"<<endl;
             dis_2();
+        }
+        if(opr ==7 )
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Angle made by a point"<<endl;
+            angle();
+        }
+        if(opr ==8)
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" St. Line Equation generator"<<endl;
+            eqgen();
         }
         if(opr ==9 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
             outfile <<uname<<" Slope of a st. Line"<<endl;
             slopeq();
+        }
+        if(opr ==10)
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Intersect Point of two st. Line"<<endl;
+            isect();
+        }
+        if(opr ==11)
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Maxima/Minima of a Function"<<endl;
+            maxima();
         }
         if(opr ==12 )
         {
@@ -647,6 +1089,13 @@ void umenu()
             system("clear");
             diff();
         }
+        if(opr ==13 )
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Opened Integrator"<<endl;
+            system("clear");
+            ntgrate();
+        }
         if(opr ==14 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
@@ -654,16 +1103,65 @@ void umenu()
             system("clear");
             invelyz();
         }
-        /* if (opr == 20){
-                string ax,ay,az;
+        if(opr ==15 )
+        {
+            outfile.open("History/"+uname+".txt", std::ios_base::app);
+            outfile <<uname<<" Opened Profit Diagram"<<endl;
+            system("clear");
+            pdig();
+        }
+            if (opr == 20){
+            system("clear");
+            clrh();
+
+        }
+
+    }
+
+
+    void clrh() {
+
+            string a1,a2,a3,a4,uname=up;
             ifstream read("History/"+uname+".txt");
-            getline(read, ax);
-            getline(read, ay);
-            getline(read, az);
-            cout<<ax<<ay<<az;
+            getline(read, a1);
+            getline(read, a2);
+            getline(read, a3);
+            getline(read, a4);
+            cout<<endl<<"\033[35m\t\e[1mRecent History\033[0m\e[0m ("<<uname<<")"<<endl;
+            if ( a1.empty() ){
+                    cout<<endl<<"\t(no surfing history)!"<<endl;
+                    int choose;
+                    cout<<endl<<"\t[2] Return to Menu: "; cin>>choose;
+                    if (choose==2) {
+                        system("clear");
+                        umenu();
+                    }
 
-        } */
+            }
+            else {
+                    cout<<"\t"<<a1<<endl<<"\t"<<a2<<endl<<"\t"<<a3<<endl<<"\t"<<a4<<endl;
+            int clh;
+            cout<<endl<<"\t[1] Clear History\t[2] Return to Menu: "; cin>>clh;
+            if (clh == 1){
+                ofstream file;
+                file.open("History/"+uname+".txt");
+                file <<"";
+                file.close();
+                cout<<endl<<"\tPlease wait...";
+                cout<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(600));
+                cout<<"\t\033[32mHistory Cleared!\033[0m"<<endl;
+                this_thread::sleep_for(chrono::milliseconds(600));
+                system("clear");
+                clrh();
+            }
+            if (clh == 2){
+                system("clear");
+                umenu();
+            }
 
+
+    }
     }
 
 
@@ -676,19 +1174,19 @@ void umenu()
         cout<<"\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n";
         cout<<"\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n";
         cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n";
-        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Quadrant of a Coordinate\n";
-        cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Mirror of a point\n";
-        cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
-        cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Angle made by the point with respect to x & y axis.\n";
+        cout<<"\t\033[36m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Quadrant of a Coordinate\n";
+        cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Mirror of a point\n";
+        cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
+        cout<<"\t\033[35m\e[1m[7]\033[0m\e[0m  Angle made by the point with respect to x & y axis.\n";
         cout<<"\n\n\033[36m\t\e[1mStraight Lines\033[0m\e[0m\n";
-        cout<<"\t\033[36m\e[1m[7]\033[0m\e[0m  St. Line Equation Generator\n";
-        cout<<"\t\033[36m\e[1m[8]\033[0m\e[0m  Distance between two st. lines\n";
+        cout<<"\t\033[36m\e[1m[8]\033[0m\e[0m  St. Line Equation Generator\n";
         cout<<"\t\033[36m\e[1m[9]\033[0m\e[0m  Slope of a st. Line\n";
         cout<<"\t\033[36m\e[1m[10]\033[0m\e[0m Intersect Point of two st. lines\n";
         cout<<"\n\n\033[33m\t\e[1mCurves Analysis\033[0m\e[0m\n";
         cout<<"\t\033[33m\e[1m[11]\033[0m\e[0m  Maxima & Minima of a Function\n";
         cout<<"\t\033[33m\e[1m[12]\033[0m\e[0m  Differentiation of a Function\n";
-        cout<<"\t\033[33m\e[1m[13]\033[0m\e[0m  Area of a Function binded by x=a,y=b\n";
+        cout<<"\t\033[33m\e[1m[13]\033[0m\e[0m  Integrate a Function\n";
         cout<<"\n\n\033[32m\t\e[1mBusiness Analysis\033[0m\e[0m\n";
         cout<<"\t\033[32m\e[1m[14]\033[0m\e[0m  Invest Analysis\n";
         cout<<"\t\033[32m\e[1m[15]\033[0m\e[0m  Profit Diagram\n";
@@ -712,31 +1210,61 @@ void umenu()
         }
         if(opr ==3 )
         {
+            car();
+        }
+        if(opr ==4 )
+        {
             qua();
 
         }
-        if(opr ==4 )
+        if(opr ==5 )
         {
             mircor();
 
         }
-        if(opr ==7 )
+        if(opr ==6 )
         {
             dis_2();
+        }
+        if(opr ==7 )
+        {
+            angle();
+        }
+        if(opr ==8)
+        {
+            eqgen();
         }
         if(opr ==9 )
         {
             slopeq();
+        }
+        if(opr == 10 )
+        {
+            isect();
+        }
+        if(opr == 11 )
+        {
+            maxima();
         }
         if(opr ==12 )
         {
             system("clear");
             diff();
         }
+        if(opr ==13 )
+        {
+            system("clear");
+            ntgrate();
+        }
         if(opr ==14 )
         {
             system("clear");
             invelyz();
+        }
+        if(opr ==15 )
+        {
+            system("clear");
+            pdig();
         }
 
     }
