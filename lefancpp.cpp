@@ -5,15 +5,17 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <bits/stdc++.h>
-#include<unistd.h>
+#include <unistd.h>
 using namespace std;
 
 
 class Functions
 {
-public:
+    private:
     string up,pwd,mail;
     int ay;
+public:
+
 
     void main1()
     {
@@ -72,7 +74,7 @@ public:
         this_thread::sleep_for(chrono::milliseconds(600));
         if (u == uname) {
             cout<<endl<<"\033[31m\tUser already exists!!\033[0m"<<endl<<"\tChoose another name"<<endl<<endl;
-                this_thread::sleep_for(chrono::milliseconds(1020));
+                this_thread::sleep_for(chrono::milliseconds(1100));
             system("clear");
             reg();}
         else{
@@ -103,13 +105,13 @@ public:
     string uname,chname, np, u, p,email,e;
     np = pwd; email = mail;uname=up;
         cout<<endl<<"\033[31m\t\e[1mChange Username:\033[0m\e[0m"<<endl<<endl;
-        cout<<"\tEnter your Desired Username to search for account and then reset it"<<endl;
+        cout<<"\tEnter your Desired Username to begin changing username"<<endl;
         cout<<"\t | Username: "; cin>>chname;
         ifstream read("Users/"+chname+".txt");
         getline(read, u);
         cout<<endl;
         this_thread::sleep_for(chrono::milliseconds(600));
-        cout<<endl<<"\t\033[0mPlease wait while checking if "<<uname<<" exits...\033[0m"<<endl;
+        cout<<endl<<"\t\033[0mPlease wait while checking if "<<chname<<" exits...\033[0m"<<endl;
         if (u == chname) {
             cout<<endl<<"\033[31m\tUser already exists!!\033[0m"<<endl<<"\tUsername could not be changed."<<endl<<endl;
                 this_thread::sleep_for(chrono::milliseconds(1020));
@@ -171,7 +173,7 @@ public:
         string uname, np, u, p,email,e;
         cout<<endl<<"\033[31m\t\e[1mPassword Reset:\033[0m\e[0m"<<endl<<endl;
         cout<<"\tEnter your Username to search for account and then reset it"<<endl;
-        cout<<"\t | Username:"; cin>>uname;
+        cout<<"\t | Username: "; cin>>uname;
         ifstream read("Users/"+uname+".txt");
         getline(read, u);
         getline(read,p);
@@ -180,8 +182,8 @@ public:
         this_thread::sleep_for(chrono::milliseconds(600));
         cout<<endl<<"\t\033[0mPlease wait while your account is being found...\033[0m"<<endl;
         if (u == uname) {
-            cout<<endl<<"\033[32m\tAccound Found!\033[0m"<<endl;
-            cout<<endl<<"\tHello,"<<uname<<endl<<"\tEnter email provided while signing up: "; cin>>email;
+            cout<<endl<<"\033[32m\tAccount Found!\033[0m"<<endl;
+            cout<<endl<<"\tHello,"<<uname<<endl<<"\tEnter the email provided while signing up: "; cin>>email;
             cout<<endl<<"\t\033[0mPlease wait while your email is being verified...\033[0m"<<endl;
             this_thread::sleep_for(chrono::milliseconds(600));
             if (e == email){
@@ -1301,8 +1303,8 @@ void umenu()
         cout<<"\t----------------\n\n";
         cout<<"\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n";
         cout<<"\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n";
-        cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n";
-        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Polar to Cartesian Conversion\n";
         cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Quadrant of a Coordinate\n";
         cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Mirror of a point\n";
         cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
@@ -1341,13 +1343,13 @@ void umenu()
         if(opr ==2 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Opened Polar to Cartesian Conversion"<<endl;
+            outfile <<uname<<" Opened Cartesian to Polar Conversion"<<endl;
             pol();
         }
         if(opr ==3 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Opened Cartesian to Polar Conversion"<<endl;
+            outfile <<uname<<" Opened Polar to Cartesian Conversion"<<endl;
             car();
 
         }
@@ -1726,7 +1728,6 @@ void umenu()
 
 cout<<endl;
     }
-
 
 
 
