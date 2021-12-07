@@ -11,7 +11,7 @@ using namespace std;
 class Functions
 {
 public:
-    string up;
+    string up,pwd,mail;
     int ay;
 
     void main1()
@@ -19,7 +19,7 @@ public:
         int opts;
         cout<<"\n\n\t\t\t\t=============\n\t\t\t\t    \e[1mLEFAN\e[0m\n\t\t\t\t=============\n\n";
         cout<<"\n\tHey \033[32mAnon\033[0m, Welcome to Linear Equations and Function Analysis!\n\tA coordinate geometry Calculator and Function Analyzer.\n\n";
-        cout<<"\t   \033[36m[1] Sign in\n\t   [2] Sign up\n\t   [3] Continue as \033[32mAnon\033[36m (calculation history will not be saved)\n\t   [4] Docs\033[0m\n\n";
+        cout<<"\t   \033[36m[1] Sign in\n\t   [2] Sign up\n\t   [3] Forgot Password?\n\t   [4] Continue as \033[32mAnon\033[36m (calculation history will not be saved)\n\t   [5] Docs\033[0m\n\n";
         cout<<"\tEnter the \e[1mnumber \e[0mbefore the options to operate the program: ";
         cin>>opts;
 
@@ -37,6 +37,11 @@ public:
         }
         if (opts == 3)
         {
+            system("clear");
+            lpass();
+        }
+        if (opts == 4)
+        {
             ay=1;
             system("clear");
             anonmenu();
@@ -48,16 +53,19 @@ public:
 
     void reg()
     {
-        string uname, pword;
-        cout<<"Username: ";
+        string uname, pword,email;
+        cout<<endl<<"\033[34m\t\e[1mNew User Registration\033[0m\e[0m"<<endl<<endl;
+        cout<<"\t | Username: ";
         cin>>uname;
-        cout<<"Password: ";
+        cout<<"\t | Password: ";
         cin>>pword;
+        cout<<"\t | Email(optional for resetting password): ";
+        cin>>email;
         ofstream file;
         file.open("Users/"+uname+".txt");
-        file << uname <<endl << pword;
+        file << uname <<endl << pword<<endl <<email;
         file.close();
-        up = uname;
+        //up = uname;
         cout<<endl<<endl;
         this_thread::sleep_for(chrono::milliseconds(600));
         cout<<"\t\033[32mAccount Created! Signing in...\033[0m"<<endl;
@@ -66,12 +74,127 @@ public:
         system("clear");
         umenu();
     }
+
+    void cname () {
+
+    string uname,chname, np, u, p,email,e;
+    np = pwd; email = mail;uname=up;
+        cout<<endl<<"\033[31m\t\e[1mChange Username:\033[0m\e[0m"<<endl<<endl;
+        cout<<"\tEnter your Desired Username to search for account and then reset it"<<endl;
+        cout<<"\t | Username: "; cin>>chname;
+        ifstream read("Users/"+chname+".txt");
+        getline(read, u);
+        cout<<endl;
+        this_thread::sleep_for(chrono::milliseconds(600));
+        cout<<endl<<"\t\033[0mPlease wait while checking if "<<uname<<" exits...\033[0m"<<endl;
+        if (u == chname) {
+            cout<<endl<<"\033[31m\tUser already exists!!\033[0m"<<endl<<"\tUsername could not be changed."<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1020));
+            system("clear");
+            cname();
+
+            }
+            else{
+            cout<<endl<<"\033[32m\tUsername Changed!!\033[0m"<<endl;
+            up = chname;
+                ofstream file;
+                filesystem::remove("Users/"+uname+".txt");
+                file.open("Users/"+chname+".txt");
+                file << chname <<endl << np<<endl <<email;
+                file.close();
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("clear");
+                umenu();
+
+
+            }
+        }
+
+
+    void cpass(){
+        string uname, np, u, p,email,e;
+        cout<<endl<<"\033[31m\t\e[1mChange Password\033[0m\e[0m"<<endl<<endl;
+        uname = up;
+        ifstream read("Users/"+uname+".txt");
+        getline(read, u);
+        getline(read,p);
+        getline(read,e);
+            cout<<endl<<"\tHello,"<<uname<<endl<<"\tEnter email provided while signing up: "; cin>>email;
+            cout<<endl<<"\t\033[0mPlease wait while your email is being verified...\033[0m"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(600));
+            if (e == email){
+                ofstream file;
+                cout<<endl<<"\033[32m\tEmail Matched!\033[0m"<<endl;
+                cout<<"\t | New Password: "; cin>>np;
+                file.open("Users/"+uname+".txt");
+                file << uname <<endl << np<<endl <<email;
+                file.close();
+                cout<<endl<<"\033[32m\tPassword Change done, Redirecting to Menu Page...\033[0m"<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("clear");
+                umenu();
+
+            }
+            else{
+                cout<<endl<<"\033[31m\tInvalid Email!!\033[0m"<<endl<<"\tPassword could not be Changed."<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1020));
+            system("clear");
+            main1();
+            }
+    }
+
+
+    void lpass(){
+        string uname, np, u, p,email,e;
+        cout<<endl<<"\033[31m\t\e[1mPassword Reset:\033[0m\e[0m"<<endl<<endl;
+        cout<<"\tEnter your Username to search for account and then reset it"<<endl;
+        cout<<"\t | Username:"; cin>>uname;
+        ifstream read("Users/"+uname+".txt");
+        getline(read, u);
+        getline(read,p);
+        getline(read,e);
+        cout<<endl;
+        this_thread::sleep_for(chrono::milliseconds(600));
+        cout<<endl<<"\t\033[0mPlease wait while your account is being found...\033[0m"<<endl;
+        if (u == uname) {
+            cout<<endl<<"\033[32m\tAccound Found!\033[0m"<<endl;
+            cout<<endl<<"\tHello,"<<uname<<endl<<"\tEnter email provided while signing up: "; cin>>email;
+            cout<<endl<<"\t\033[0mPlease wait while your email is being verified...\033[0m"<<endl;
+            this_thread::sleep_for(chrono::milliseconds(600));
+            if (e == email){
+                ofstream file;
+                cout<<endl<<"\033[32m\tEmail Matched!\033[0m"<<endl;
+                cout<<"\t | New Password: "; cin>>np;
+                file.open("Users/"+uname+".txt");
+                file << uname <<endl << np<<endl <<email;
+                file.close();
+                cout<<endl<<"\033[32m\tPassword reset done, Redirecting to Login Page...\033[0m"<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                system("clear");
+                in();
+
+            }
+            else{
+                cout<<endl<<"\033[31m\tInvalid Email!!\033[0m"<<endl<<"\tPassword could not be resetted."<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1020));
+            system("clear");
+            main1();
+            }
+        }
+        else {
+            cout<<endl<<"\033[31m\tInvalid Username!!\033[0m"<<endl<<"\tPassword could not be resetted."<<endl<<endl;
+            this_thread::sleep_for(chrono::milliseconds(1020));
+            system("clear");
+            main1();
+        }
+    }
     void in()
     {
         int opr;
         ofstream file;
-        string uname, pword, u, p;
-        cout<<"\033[35m\t\e[1mExisting User Login\033[0m\e[0m"<<endl<<endl;
+        ofstream hfile;
+        string uname, pword, u, p,e;
+        cout<<endl<<"\033[32m\t\e[1mExisting User Login\033[0m\e[0m"<<endl<<endl;
         cout<<"\t | Username: ";
         cin>>uname;
         cout<<"\t | Password: ";
@@ -79,15 +202,21 @@ public:
         ifstream read("Users/"+uname+".txt");
         getline(read, u);
         getline(read, p);
+        getline(read, e);
 
         if (u == uname && p == pword)
         {
             ifstream read("Users/"+uname+".txt");
             getline(read, u);
             up = u;
+            pwd = pword;
+            mail = e;
             file.open("History/"+uname+".txt");
             file << uname<<" Logged In"<<endl;
             file.close();
+            hfile.open("History/"+uname+"_calculations.txt");
+            hfile <<"[IN] "<<uname<<" Logged In"<<endl;
+            hfile.close();
             system("clear");
             umenu();
         }
@@ -95,10 +224,24 @@ public:
                 cout<<endl;
             this_thread::sleep_for(chrono::milliseconds(600));
         cout<<"\t\033[31mIncorrect Information\033[0m"<<endl;
-        this_thread::sleep_for(chrono::milliseconds(800));
-        cout<<endl;
-        system("clear");
-        in();
+        int lch;
+        cout<<"[1] Reset Password\t[2] Try Again\t[3]Sign Up\t[4]Anon: ";cin>>lch;
+        if (lch == 1){
+            system("clear");
+            lpass();
+        }
+        if(lch == 2) {
+            system("clear");
+            in();
+        }
+        if(lch == 3) {
+            system("clear");
+            reg();
+        }
+        if(lch == 4) {
+            system("clear");
+            anonmenu();
+        }
 
         }
 
@@ -119,6 +262,18 @@ public:
         cd = (b-d)*(b-d);
         dis = sqrt(ab+cd);
         cout<<"Distance between ("<<a<<","<<b<<") and ("<<b<<","<<d<<") is: "<<dis<<endl<<endl;
+        int uh = ay;
+
+            string uname;
+            uname = up;
+            if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F1] "<<"Inputs: ("<<a<<","<<b<<") -- Output: "<<dis<<endl;}
+        else{
+
+        }
+
+
         int choose,any;
         any = ay;
         cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
@@ -156,6 +311,12 @@ public:
         theta = (atan(y/x))*57.29577;
         cout<<endl<<"Polar (r,theta) : ("<<r<<","<<theta<<")"<<endl;
         cout<<endl;
+
+        string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F2] "<<"Inputs: ("<<x<<","<<y<<") -- Output: ("<<r<<","<<theta<<")"<<endl;}else{}
 
         int choose,any;
         any = ay;
@@ -217,7 +378,7 @@ public:
 
     int choose,any;
     any=ay;
-        cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
+        cout<<std::noshowpos<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
         cin>>choose;
         if (choose == 1)
         {
@@ -253,6 +414,14 @@ public:
     s3 = s1 + s2;
     dis = sqrt(s3);
    cout<<"\tDistance of ("<<x<<","<<y<<") from O(0,0) : "<<dis<<" units."<<endl<<endl;
+
+
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F6] "<<"Inputs: ("<<x<<","<<y<<") -- Output: "<<dis<<endl;}
+            else{}
 
    cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit"<<endl;
     int choose,any;any=ay;
@@ -313,6 +482,11 @@ public:
             cout<<"\t               .|"<<endl<<"\t            .\t|"<<endl<<"\t         .\t|"<<endl<<"\t      .\t\t|"<<endl<<"\t   .\t\t|"<<endl;
     }
 
+        string uname;
+            int uh = ay;if(uh==0){uname = up;
+            ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F9] "<<"Inputs: ("<<a<<","<<b<<","<<c<<") -- Output: ("<<slope<<","<<angle<<")"<<endl;} else{}
 
     int choose,any;
     any=ay;
@@ -348,16 +522,23 @@ void qua()
     cout<<"\tQuadrant of a Coordinate";
     cout<<"\n========================================\n\n";
 
-   double a,b;
+   double a,b,x,y;
    cout<<"Enter two coordinates (X,Y) : ";
    cin>>a;
    cin>>b;
+   x=a;
+   y=b;
    cout<<endl;
    if(a > 0.00 && b > 0.00){
         cout<<"Point ("<<a<<","<<b<<") lies in the 1st Quadrant.\n"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 1st Quadrant)"<<endl;} else{}
 
    }
    else if(a < 0.00 && b > 0.00) {
@@ -365,18 +546,33 @@ void qua()
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t("<<a<<","<<b<<")\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+        string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 2nd Quadrant)"<<endl;}else{}
    }
    else if(a < 0.00 && b < 0.00){
       cout<<"Point ("<<a<<","<<b<<")lies in the 3rd Quadrant.\n"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t("<<a<<","<<b<<")\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+        string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 3rd Quadrant)"<<endl;}else{}
    }
    else if(a > 0.00 && b < 0.00){
             cout<<"Point ("<<a<<","<<b<<")lies in the 4th Quadrant.\n"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t----------------------------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 4th Quadrant)"<<endl;}else{}
    }
 
    else{
@@ -384,6 +580,11 @@ void qua()
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in the origin)"<<endl;} else{}
    }
 
 
@@ -438,6 +639,11 @@ void mircor ()
 		cout<<"\t\t\t|"<<endl<<"\t\t\t|\t.   ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t--------------(0,0)--------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t.   ("<<x1<<","<<-y1<<") mirror"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F5] "<<"Mirror of ("<<x1<<","<<y1<<") w.r.t X axis is ("<<x1<<","<<-y1<<")"<<endl;}else{}
 	}
 
 	if (c == 2) {
@@ -449,6 +655,11 @@ void mircor ()
 		cout<<"\tmirror("<<-x1<<","<<y1<<")\t|"<<endl<<"\t\t.\t|\t.   ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F5] "<<"Mirror of ("<<x1<<","<<y1<<") w.r.t Y axis is ("<<-x1<<","<<y1<<")"<<endl;} else{}
 	}
 
 	if (c == 3) {
@@ -464,6 +675,11 @@ void mircor ()
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t.   ("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t(("<<-a<<","<<-b<<")) .\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+        string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F5] "<<"Mirror of ("<<x1<<","<<y1<<") w.r.t origin is ("<<-x1<<","<<-y1<<")"<<endl;} else{}
 
    }
         if(a < 0.00 && b > 0.00) {
@@ -501,6 +717,11 @@ void mircor ()
             cout<<"\t\t\t|"<<endl<<"\t("<<x<<","<<y<<") ."<<"\t\t|\t. ("<<mx<<","<<my<<")"<<"\t\t. ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F5] "<<"Mirror of ("<<x1<<","<<y1<<") w.r.t ("<<mx<<","<<my<<") is ("<<x1<<","<<-y1<<")"<<endl;}else{}
 
 	}
 
@@ -595,6 +816,12 @@ void invelyz (){
         //if (pricedata[i] == 0) break;
     }
 
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F14] "<<"Budget: "<<budget<<", Invested: "<<invested_1<<"Selling Price: "<<sell_price<<endl;}else{}
+
     int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
@@ -638,9 +865,20 @@ void isect()
         x1 = xx/d;
         y1 = yy/d;
        cout<<"\tIntersect Point: ("<<std::noshowpos<<x1<<","<<y1<<")"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F10] "<<"Intersect Points: ("<<x1<<","<<y1<<")"<<endl;}else{}
     }
-    else cout<<"\tThe Lines are parallel to each other, hence there is no Intersect point"<<endl;
-
+    else {
+            cout<<"\tThe Lines are parallel to each other, hence there is no Intersect point"<<endl;
+     string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F10] "<<"Parallel Lines"<<endl;}else{}
+    }
 
 
  int choose,any;any=ay;
@@ -780,9 +1018,19 @@ void pdig() {
     int sum = 0;
     sum = fc + fe + ff+pl;
     cout<<endl<<"\tYou will Attract "<<sum<<" percent of the customers!"<<endl<<endl;;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F15] "<<"You will Attract "<<sum<<" percent of the customers!"<<endl;}else{}
     }
     else {
         cout<<"\tYou are the only player in the field, Play as you like!!"<<endl<<endl;
+        string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F15] "<<"You are the only player in the field, Play as you like!"<<endl;}else{}
     }
 
 
@@ -825,12 +1073,23 @@ void maxima(){
             y = (a*(x*x))+(b*x)+c;
 
         cout<<"The above function has minima value.\nThe minima coordinates are ("<<x<<","<<y<<")"<<endl;
+       string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F11] "<<"Minima: ("<<x<<","<<y<<")"<<endl;}else{}
     }
     else {
         x = ((-1)*b)/(2*a);
             y = (a*(x*x))+(b*x)+c;
             cout<<"The above function has maxima value"<<"The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F11] "<<"Maxima: ("<<x<<","<<y<<")"<<endl;}else{}
     }
+
 
     cout<<endl<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out"<<endl;
 int choose,any;any=ay;
@@ -874,6 +1133,12 @@ void angle()
     theta = theta * 57.29577;
     cout<<"\tAngle made by ("<<x<<","<<y<<") is "<<theta<<"degrees"<<endl;
 
+    string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F7] "<<"Input: ("<<x<<","<<y<<") Angle: "<<theta<<endl;}else{}
+
     int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
@@ -906,6 +1171,12 @@ void eqgen(){
     b = y1-y2;
     cout<<endl<<"\tEquation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;
 
+            string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F8] "<<"Input: ("<<x1<<","<<y1<<","<<x2<<","<<y2<<") Equation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;}else{}
+
     int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
 
@@ -934,20 +1205,26 @@ void eqgen(){
 void car()
 {
     system("clear");
-	 double x, y, r, theta,PI = 3.1416;
+	 double x, y, r, theta,thetain,PI = 3.1416;
 
 	 cout<<"Enter radius of polar coordinate (r): ";
 	 cin>>r;
 	 cout<<"Enter angle of polar coordinate in degree (theta): ";
-	 cin>>theta;
+	 cin>>thetain;
 
-	 theta = theta * PI/180;
+	 theta = thetain * PI/180;
 
 	 x = r * cos(theta);
 
 	 y = r * sin(theta);
 
 	cout<<"Cartesian coordinates are (x,y) : (" << x<<"," << y<<")"<<endl;
+
+	string uname;
+            uname = up;
+            int uh = ay;if(uh==0){ofstream outfile;
+            outfile.open("History/"+uname+"_calculations.txt", std::ios_base::app);
+            outfile<<"[F3] "<<"Inputs: ("<<r<<","<<thetain<<") -- Output: ("<<x<<","<<y<<")"<<endl;} else{}
 
 	int choose,any;any=ay;
     cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
@@ -985,7 +1262,7 @@ void umenu()
         cout<<"\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n";
         cout<<"\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n";
         cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n";
-        cout<<"\t\033[36m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
         cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Quadrant of a Coordinate\n";
         cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Mirror of a point\n";
         cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
@@ -1002,8 +1279,11 @@ void umenu()
         cout<<"\t\033[32m\e[1m[14]\033[0m\e[0m  Invest Analysis\n";
         cout<<"\t\033[32m\e[1m[15]\033[0m\e[0m  Profit Diagram\n";
         cout<<"\n\n";
-        cout<<"\t\033[35m\e[1m[20]\033[0m\e[0m  History"<<endl;
-        cout<<"\t\033[31m\e[1m[0]\033[0m\e[0m   Log Out ("<<uname<<")"<<endl<<endl;
+        cout<<"\033[35m\t\e[1mAccount Settings\033[0m\e[0m\n";
+        cout<<"\t\033[35m\e[1m[20]\033[0m\e[0m  Surfing History\t\033[35m\e[1m[21]\033[0m\e[0m  Calculation History"<<endl;
+        cout<<"\t\033[35m\e[1m[22]\033[0m\e[0m  Change Username\t\033[35m\e[1m[23]\033[0m\e[0m  Change Password"<<endl;
+        cout<<endl;
+        cout<<"                \t\033[31m\e[1m[0]\033[0m\e[0m   Log Out ("<<uname<<")"<<endl<<endl;
         cout<<"\tChoose: ";
         cin>>opr;
         if (opr == 0)
@@ -1014,20 +1294,20 @@ void umenu()
         if(opr ==1 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Distance between two points"<<endl;
+            outfile <<uname<<" Opened Distance between two points"<<endl;
             dis_1();
 
         }
         if(opr ==2 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Polar to Cartesian Conversion"<<endl;
+            outfile <<uname<<" Opened Polar to Cartesian Conversion"<<endl;
             pol();
         }
         if(opr ==3 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Cartesian to Polar Conversion"<<endl;
+            outfile <<uname<<" Opened Cartesian to Polar Conversion"<<endl;
             car();
 
         }
@@ -1049,37 +1329,37 @@ void umenu()
         if(opr ==6 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Distance of a Coordinate from O(0,0)"<<endl;
+            outfile <<uname<<" Opened Distance of a Coordinate from O(0,0)"<<endl;
             dis_2();
         }
         if(opr ==7 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Angle made by a point"<<endl;
+            outfile <<uname<<" Opened Angle made by a point"<<endl;
             angle();
         }
         if(opr ==8)
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" St. Line Equation generator"<<endl;
+            outfile <<uname<<" Opened St. Line Equation generator"<<endl;
             eqgen();
         }
         if(opr ==9 )
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Slope of a st. Line"<<endl;
+            outfile <<uname<<" Opened Slope of a st. Line"<<endl;
             slopeq();
         }
         if(opr ==10)
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Intersect Point of two st. Line"<<endl;
+            outfile <<uname<<" Opened Intersect Point of two st. Line"<<endl;
             isect();
         }
         if(opr ==11)
         {
             outfile.open("History/"+uname+".txt", std::ios_base::app);
-            outfile <<uname<<" Maxima/Minima of a Function"<<endl;
+            outfile <<uname<<" Opened Maxima/Minima of a Function"<<endl;
             maxima();
         }
         if(opr ==12 )
@@ -1115,18 +1395,36 @@ void umenu()
             clrh();
 
         }
+        if (opr == 21){
+            system("clear");
+            calh();
+
+        }
+        if (opr == 22){
+            system("clear");
+            cname();
+
+        }
+        if (opr == 23){
+            system("clear");
+            cpass();
+
+        }
 
     }
 
 
     void clrh() {
 
-            string a1,a2,a3,a4,uname=up;
+            string a1,a2,a3,a4,a5,a6,a7,uname=up;
             ifstream read("History/"+uname+".txt");
             getline(read, a1);
             getline(read, a2);
             getline(read, a3);
             getline(read, a4);
+            getline(read, a5);
+            getline(read, a6);
+            getline(read, a7);
             cout<<endl<<"\033[35m\t\e[1mRecent History\033[0m\e[0m ("<<uname<<")"<<endl;
             if ( a1.empty() ){
                     cout<<endl<<"\t(no surfing history)!"<<endl;
@@ -1139,7 +1437,7 @@ void umenu()
 
             }
             else {
-                    cout<<"\t"<<a1<<endl<<"\t"<<a2<<endl<<"\t"<<a3<<endl<<"\t"<<a4<<endl;
+                    cout<<"\t"<<a1<<endl<<"\t"<<a2<<endl<<"\t"<<a3<<endl<<"\t"<<a4<<endl<<"\t"<<a5<<endl<<"\t"<<a6<<endl<<"\t"<<a7<<endl;
             int clh;
             cout<<endl<<"\t[1] Clear History\t[2] Return to Menu: "; cin>>clh;
             if (clh == 1){
@@ -1165,6 +1463,55 @@ void umenu()
     }
 
 
+    void calh() {
+
+            string a1,a2,a3,a4,a5,a6,a7,uname=up;
+            ifstream read("History/"+uname+"_calculations.txt");
+            getline(read, a1);
+            getline(read, a2);
+            getline(read, a3);
+            getline(read, a4);
+            getline(read, a5);
+            getline(read, a6);
+            getline(read, a7);
+            cout<<endl<<"\033[35m\t\e[1mRecent History\033[0m\e[0m ("<<uname<<")"<<endl;
+            if ( a1.empty() ){
+                    cout<<endl<<"\t(no surfing history)!"<<endl;
+                    int choose;
+                    cout<<endl<<"\t[2] Return to Menu: "; cin>>choose;
+                    if (choose==2) {
+                        system("clear");
+                        umenu();
+                    }
+
+            }
+            else {
+                    cout<<"\t"<<a1<<endl<<"\t"<<a2<<endl<<"\t"<<a3<<endl<<"\t"<<a4<<endl<<"\t"<<a5<<endl<<"\t"<<a6<<endl<<"\t"<<a7<<endl;
+            int clh;
+            cout<<endl<<"\t[1] Clear History\t[2] Return to Menu: "; cin>>clh;
+            if (clh == 1){
+                ofstream file;
+                file.open("History/"+uname+"_calculations.txt");
+                file <<"";
+                file.close();
+                cout<<endl<<"\tPlease wait...";
+                cout<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(600));
+                cout<<"\t\033[32mHistory Cleared!\033[0m"<<endl;
+                this_thread::sleep_for(chrono::milliseconds(600));
+                system("clear");
+                calh();
+            }
+            if (clh == 2){
+                system("clear");
+                umenu();
+            }
+
+
+    }
+    }
+
+
     void anonmenu()
     {
         int opr;
@@ -1174,7 +1521,7 @@ void umenu()
         cout<<"\033[35m\t\e[1mCoordinate Geometry\033[0m\e[0m\n";
         cout<<"\t\033[35m\e[1m[1]\033[0m\e[0m  Distance between two points\n";
         cout<<"\t\033[35m\e[1m[2]\033[0m\e[0m  Polar to Cartesian Conversion\n";
-        cout<<"\t\033[36m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
+        cout<<"\t\033[35m\e[1m[3]\033[0m\e[0m  Cartesian to Polar Conversion\n";
         cout<<"\t\033[35m\e[1m[4]\033[0m\e[0m  Quadrant of a Coordinate\n";
         cout<<"\t\033[35m\e[1m[5]\033[0m\e[0m  Mirror of a point\n";
         cout<<"\t\033[35m\e[1m[6]\033[0m\e[0m  Distance of a Coordinate from O(0,0)\n";
