@@ -8,6 +8,7 @@
 #include<unistd.h>
 using namespace std;
 
+
 class Functions
 {
 public:
@@ -16,6 +17,7 @@ public:
 
     void main1()
     {
+        system("clear");
         int opts;
         cout<<"\n\n\t\t\t\t=============\n\t\t\t\t    \e[1mLEFAN\e[0m\n\t\t\t\t=============\n\n";
         cout<<"\n\tHey \033[32mAnon\033[0m, Welcome to Linear Equations and Function Analysis!\n\tA coordinate geometry Calculator and Function Analyzer.\n\n";
@@ -45,7 +47,12 @@ public:
             ay=1;
             system("clear");
             anonmenu();
+        }
 
+        if (opts == 5)
+        {
+            system("clear");
+            docs();
         }
 
 
@@ -53,14 +60,30 @@ public:
 
     void reg()
     {
-        string uname, pword,email;
+        string uname, pword,email,u;
         cout<<endl<<"\033[34m\t\e[1mNew User Registration\033[0m\e[0m"<<endl<<endl;
         cout<<"\t | Username: ";
         cin>>uname;
+
+        ifstream read("Users/"+uname+".txt");
+        getline(read, u);
+        cout<<endl;
+        cout<<endl<<"\t\033[0mPlease wait while checking if "<<uname<<" already exits...\033[0m"<<endl;
+        this_thread::sleep_for(chrono::milliseconds(600));
+        if (u == uname) {
+            cout<<endl<<"\033[31m\tUser already exists!!\033[0m"<<endl<<"\tChoose another name"<<endl<<endl;
+                this_thread::sleep_for(chrono::milliseconds(1020));
+            system("clear");
+            reg();}
+        else{
+        cout<<endl<<"\033[32m\tUser name Avaialbe!!\033[0m"<<endl<<endl;
+        up = uname;
         cout<<"\t | Password: ";
         cin>>pword;
+        pwd = pword;
         cout<<"\t | Email(optional for resetting password): ";
         cin>>email;
+        mail = email;
         ofstream file;
         file.open("Users/"+uname+".txt");
         file << uname <<endl << pword<<endl <<email;
@@ -72,7 +95,7 @@ public:
         this_thread::sleep_for(chrono::milliseconds(800));
         cout<<endl;
         system("clear");
-        umenu();
+        umenu();}
     }
 
     void cname () {
@@ -249,6 +272,7 @@ public:
 
     void dis_1()
     {
+
         double a,b,c,d,dis=0,ab,cd;
         system("clear");
         cout<<endl<<"\033[35m\t\e[1mDistance between two Points:\033[0m\e[0m\n"<<endl<<endl;
@@ -259,7 +283,7 @@ public:
         ab = (a-c)*(a-c);
         cd = (b-d)*(b-d);
         dis = sqrt(ab+cd);
-        cout<<endl<<"\t \033[35m\t\e[1m|\033[0m\e[0m Distance between ("<<a<<","<<b<<") and ("<<b<<","<<d<<") is: "<<dis<<endl<<endl;
+        cout<<endl<<std::noshowpos<<" \033[35m\t\e[1m |\033[0m\e[0m Distance between ("<<a<<","<<b<<") and ("<<b<<","<<d<<") is: "<<dis<<endl<<endl;
         int uh = ay;
 
             string uname;
@@ -274,7 +298,7 @@ public:
 
         int choose,any;
         any = ay;
-        cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
+        cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
         cin>>choose;
         if (choose == 1)
         {
@@ -319,7 +343,7 @@ public:
 
         int choose,any;
         any = ay;
-        cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
+        cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
         cin>>choose;
         if (choose == 1)
         {
@@ -389,7 +413,7 @@ public:
 cout<<endl<<endl;
     int choose,any;
     any=ay;
-        cout<<std::noshowpos<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
+        cout<<std::noshowpos<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
         cin>>choose;
         if (choose == 1)
         {
@@ -434,7 +458,7 @@ cout<<endl<<endl;
             outfile<<"[F6] "<<"Inputs: ("<<x<<","<<y<<") -- Output: "<<dis<<endl;}
             else{}
 
-   cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit"<<endl;
+   cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
     int choose,any;any=ay;
     cin>>choose;
 
@@ -501,7 +525,7 @@ cout<<endl<<endl;
 
     int choose,any;
     any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -596,7 +620,7 @@ void qua()
 
 
        int choose,any;
-	cout<<endl<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 	any = ay;
@@ -721,7 +745,7 @@ void mircor ()
 		y = (2*my)-y1;
 		cout<<"\033[35m\t\e[1m|\033[0m\e[0m Mirror of ("<<x1<<","<<y1<<") w.r.t ("<<mx<<","<<my<<") is ("<<x<<","<<y<<")\n"<<endl;
 
-            cout<<"\t\t\t|"<<endl<<"\t("<<x<<","<<y<<") ."<<"\t\t|\t. ("<<mx<<","<<my<<")"<<"\t\t. ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
+            cout<<"\t\t\t|"<<endl<<"\t("<<x<<","<<y<<") ."<<"\t|\t. ("<<mx<<","<<my<<")"<<"\t\t. ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             string uname;
@@ -734,7 +758,7 @@ void mircor ()
 
 
 	 int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -831,7 +855,7 @@ void invelyz (){
             outfile<<"[F14] "<<"Budget: "<<budget<<", Invested: "<<invested_1<<"Selling Price: "<<sell_price<<endl;}else{}
 
     int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -859,7 +883,7 @@ void isect()
      system("clear");
     double a1,b1,c1,a2,b2,c2,x1=0,y1=0,d=0,xx=0,yy=0;
     cout<<endl<<"\033[35m\t\e[1mIntersect Point of St Lines:\033[0m\e[0m\n"<<endl<<endl;
-    cout<<"\tEnter constant values for a1,b1,c1 respectively: ";
+    cout<<"\t | Enter constant values for a1,b1,c1 respectively: ";
     cin>>a1>>b1>>c1;
     cout<<"\n";
     cout<<"\t | Enter constant values for a2,b2,c2 respectively: ";
@@ -892,7 +916,7 @@ void isect()
 
 
  int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -944,7 +968,7 @@ void ntgrate ()
             cout<<"\033[35m\t\e[1mint(y) dx \033[0m\e[0m = ("<<cont<<"/"<<mp+1<<")*x^"<<mp+1<<endl;
 
     int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -978,7 +1002,7 @@ void pdig() {
     int a,b,c,d,e,f,g,h,i,j,k,l,choose,any;any=ay;
 
     cout<<endl<<"\033[35m\t\e[1mProfit Diagram:\033[0m\e[0m\n"<<endl<<endl;
-    cout<<"\tIf you are running a shop and you have some good amount of\n\tcompetitors around you, calculate the\n\tprobability if you can attract more customers\n\tby your servuce!"<<endl;
+    cout<<"\tIf you are running a shop and you have some good amount of\n\tcompetitors around you, calculate the\n\tprobability if you can attract more customers\n\tby your service!"<<endl;
 
     cout<<endl<<"\t | Enter the price of your most iconic product: ";
     cin>>price;
@@ -1047,7 +1071,7 @@ void pdig() {
     }
 
 
-    cout<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out"<<endl;
+    cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
     cin>>choose;
 
     if (choose == 1) {
@@ -1084,12 +1108,12 @@ void maxima(){
     cout<<"\t   a: "; cin>>a;
     cout<<"\t   b: "; cin>>b;
     cout<<"\t   c: "; cin>>c;
-    cout<<endl<<endl<<"033[35m\t\e[1m|\033[0m\e[0m The function is y = "<<a<<"x^2"<<std::showpos<<b<<"x"<<std::showpos<<c<<endl;
+    cout<<endl<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m The function is y = "<<a<<"x^2"<<std::showpos<<b<<"x"<<std::showpos<<c<<std::noshowpos<<endl;
     if ( a >0 ){
             x = ((-1)*b)/(2*a);
             y = (a*(x*x))+(b*x)+c;
 
-        cout<<"033[35m\t\e[1m|\033[0m\e[0m The above function has minima value.\n033[35m\t\e[1m|\033[0m\e[0m The minima coordinates are ("<<x<<","<<y<<")"<<endl;
+        cout<<"\033[35m\t\e[1m|\033[0m\e[0m The above function has minima value.\n\033[35m\t\e[1m|\033[0m\e[0m The minima coordinates are ("<<x<<","<<y<<")"<<endl;
        string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1099,7 +1123,7 @@ void maxima(){
     else {
         x = ((-1)*b)/(2*a);
             y = (a*(x*x))+(b*x)+c;
-            cout<<"033[35m\t\e[1m|\033[0m\e[0m The above function has maxima value"<<endl<<"033[35m\t\e[1m|\033[0m\e[0m The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
+            cout<<"\033[35m\t\e[1m|\033[0m\e[0m The above function has maxima value"<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
             string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1108,7 +1132,7 @@ void maxima(){
     }
 
 
-    cout<<endl<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out"<<endl;
+    cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 int choose,any;any=ay;
     cin>>choose;
 
@@ -1155,7 +1179,7 @@ void angle()
             outfile<<"[F7] "<<"Input: ("<<x<<","<<y<<") Angle: "<<theta<<endl;}else{}
 
     int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -1194,7 +1218,7 @@ void eqgen(){
             outfile<<"[F8] "<<"Input: ("<<x1<<","<<y1<<","<<x2<<","<<y2<<") Equation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;}else{}
 
     int choose,any;any=ay;
-	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+	cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -1243,7 +1267,7 @@ void car()
             outfile<<"[F3] "<<"Inputs: ("<<r<<","<<thetain<<") -- Output: ("<<x<<","<<y<<")"<<endl;} else{}
 
 	int choose,any;any=ay;
-    cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
+    cout<<endl<<"\t\033[32m\e[1m[1]\e[0m\33[0m Calculate Again\t\033[36m\e[1m[2]\e[0m\33[0m Return to Menu\t\033[31m\e[1m[0]\e[0m\33[0m Exit: ";
 
 	cin>>choose;
 
@@ -1492,7 +1516,7 @@ void umenu()
             getline(read, a7);
             cout<<endl<<"\033[35m\t\e[1mRecent History\033[0m\e[0m ("<<uname<<")"<<endl;
             if ( a1.empty() ){
-                    cout<<endl<<"\t(no surfing history)!"<<endl;
+                    cout<<endl<<"\t(no calculation history)!"<<endl;
                     int choose;
                     cout<<endl<<"\t[2] Return to Menu: "; cin>>choose;
                     if (choose==2) {
@@ -1631,6 +1655,78 @@ void umenu()
         }
 
     }
+
+
+    void docs(){
+
+        cout<<"\n\033[35m\t\e[1mRead Me\033[0m\e[0m\n";
+        cout<<"\t\033[35m______________________________\033[0m\n\n";
+        cout<<"\n\033[35m\t\e[1mIntro\033[0m\e[0m\n";
+        cout<<"\tHello user, Thank you for using \e[1mLinear Equations & Function Analysis\e[0m\n";
+        cout<<"\tThis is a simple calculator that solves maths related to both\n\tLinear and Continious Functions. Since the";
+        cout<<" beginnig of the\n\tjourney of our programming, we have been thinking of some ways\n\tto integrate programming with mathematics. We asked ";
+        cout<<"our course\n\tinstructors about it and later found out that programming and\n";
+        cout<<"\tMathematics are interconnected. So we started studying more about\n\tprogramming and started to solve problems on online platforms.\n\tAnd later by getting ";
+        cout<<"motivated by our CSE100 course instructor,\n\thonorable \e[1mMuhammad Mohsin Kabir\e[0m, We chose this very fun project.\n";
+        cout<<"\n";
+        cout<<"\n\033[35m\t\e[1mAbout LEFAN\033[0m\e[0m\n";
+        cout<<"\tLEFAN is a c++ based math calculator. We have tried to use\n\tlogics and arguments to build a *almost* useful tool for the\n\tpeople who share love for geometry and maths. Mathematics\n";
+        cout<<"\tindeed has always been the greatest field of study till current date\n\tAnd";
+        cout<<" since Maths and Programming are both accompany each other,\n\tSo the project LEFAN not only made us writing lines of codes,\n\tbut also helping us on developing critical analysis, logic building\n\tunderstanding a lot of untouched *by us* features of programming and\n";
+        cout<<"\tmathematics.";
+        cout<<"\n\n";
+        cout<<"\n\033[35m\t\e[1mSimilar Project(s) Elsewhere\033[0m\e[0m\n";
+        cout<<"\tSince LEFAN is a calculator and there are *indeed* a large amount\n\tof calculators everywhere, so it is certain that there\n\tmight be a lot of simillar projects. Even there are some dedicated\n";
+        cout<<"\tonline calculators for solving differential/integral/probability/\n\tgeometry/trigonometry/algebric functions and many more! But\n\tas our knowledge is hardly limited and it was our first project,\n\tTeam LEFAN did very good in our opinion. As it is not always about,\n";
+        cout<<"\tIt was already created so better not try on it, rather its\n\tmore about getting deep inside of every aspect of knowledge.\n\tThere might be some simillar projects roaming around, But\n\tThe joy of completing it does not villify it.\n\t";
+        cout<<"\n\n";
+        cout<<"\n\033[35m\t\e[1mResources\033[0m\e[0m\n";
+        cout<<"\tSince it can be said that we are pretty much new in the sea of c++,\n\twe had to study on it a lot. Solving maths problems,\n\tso that the outputs tend to most accurate possible, we had to\n\tknock on some doors of online forums and QnA based platforms.\n";
+        cout<<"\tBut it was certainly limited to study rather than being some copycats.\n";
+        cout<<"\n\n";
+        cout<<"\n\033[35m\t\e[1mFuture\033[0m\e[0m\n";
+        cout<<"\tWe have faith that we can do a lot better in the future. All these\n\tlimitations right now will no longer prohibit us from what\n\twe want to achieve, we dream of. We are intended to study on\n\tprogramming more and more, understanding why we are binded by these\n\tlimitations now and figure out the ways to overcome them.\n";
+        cout<<"\n\n";
+        cout<<"\n\033[35m\t\e[1mBehind LEFAN\033[0m\e[0m\n\n";
+        cout<<"\t | Mumtahina Ahmed\n";
+        cout<<"\t   Dept. of CSE , BUBT\n";
+        cout<<"\t   Intake 47, Section 1\n";
+        cout<<"\n";
+        cout<<"\t | Rajieb Rojarieo\n";
+        cout<<"\t   Dept. of CSE , BUBT\n";
+        cout<<"\t   Intake 47, Section 1\n";
+        cout<<"\n";
+        cout<<"\t | Saria Alam\n";
+        cout<<"\t   Dept. of CSE , BUBT\n";
+        cout<<"\t   Intake 47, Section 1\n";
+        cout<<"\n";
+        cout<<"\n";
+        cout<<"\n\033[35m\t\e[1mThanking\033[0m\e[0m\n\n";
+        cout<<"\t | Muhammad Mohsin Kabir sir\n";
+        cout<<"\t | Badsha Faisal sir\n";
+        cout<<"\t | Abu Quwsar Ohi sir\n";
+        cout<<"\t | Nowshed Al Nur sir\n";
+        cout<<"\t | Stackoverflow\n";
+        cout<<"\t | geeksforgeeks\n";
+        cout<<"\t | BUBT\n";
+        cout<<"\t | Coffee\n";
+        cout<<"\t | Whoever Helped & Encouraged\n";
+        cout<<"\n";
+        cout<<"\n";
+        cout<<"\n";
+        cout<<"\n\033[35m\t\e[1mLEFAN\033[0m\e[0m - Dedicated to you.\n\n";
+        cout<<"\n";
+        int choose;
+    cout<<endl<<"\t\033[36m\e[1m[0]\e[0m\33[0m Return to Menu: ";
+
+	cin>>choose;
+	if (choose == 0) {
+		main1();
+	}
+
+cout<<endl;
+    }
+
 
 
 
