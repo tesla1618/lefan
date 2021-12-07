@@ -251,17 +251,15 @@ public:
     {
         double a,b,c,d,dis=0,ab,cd;
         system("clear");
-        cout<<"\n========================================\n";
-        cout<<"Distance between two points";
-        cout<<"\n========================================\n\n";
-        cout<<"Enter coordinates of first point (x1 , y1) : ";
+        cout<<endl<<"\033[35m\t\e[1mDistance between two Points:\033[0m\e[0m\n"<<endl<<endl;
+        cout<<"\t | Enter coordinates of first point (x1 , y1) : ";
         cin>>a>>b;
-        cout<<"Enter coordinates of first point (x2, y2) : ";
+        cout<<"\t | Enter coordinates of first point (x2, y2) : ";
         cin>>c>>d;
         ab = (a-c)*(a-c);
         cd = (b-d)*(b-d);
         dis = sqrt(ab+cd);
-        cout<<"Distance between ("<<a<<","<<b<<") and ("<<b<<","<<d<<") is: "<<dis<<endl<<endl;
+        cout<<endl<<"\t \033[35m\t\e[1m|\033[0m\e[0m Distance between ("<<a<<","<<b<<") and ("<<b<<","<<d<<") is: "<<dis<<endl<<endl;
         int uh = ay;
 
             string uname;
@@ -302,14 +300,15 @@ public:
     }
 
     void pol() {
+        system("clear");
         double rx, x,y,r,theta;
         system("clear");
-        cout<<"\tPolar to Cartesian Conversion:"<<endl<<endl;
-        cout<<"Enter Coordinate (x1,y1): "; cin>>x>>y;
+        cout<<endl<<"\033[35m\t\e[1mCartesian to Polar Conversion:\033[0m\e[0m\n"<<endl<<endl;
+        cout<<"\t| Enter Coordinate (x1,y1): "; cin>>x>>y;
         rx = (x*x)+(y*y);
         r = sqrt(rx);
         theta = (atan(y/x))*57.29577;
-        cout<<endl<<"Polar (r,theta) : ("<<r<<","<<theta<<")"<<endl;
+        cout<<endl<<" \033[35m\t\e[1m|\033[0m\e[0m Polar Coordinates (r,theta) : ("<<r<<","<<theta<<")"<<endl;
         cout<<endl;
 
         string uname;
@@ -344,15 +343,15 @@ public:
     }
 
     void diff() {
-
+        system("clear");
         double ara[1000],pww[1000];
     int i,t,mp,j,dp,k;
     char ch;
     cout<<endl<<"\033[35m\t\e[1mDifferentiate a Function:\033[0m\e[0m\n"<<endl<<endl<<"\tA function follows: y = ax^n+bx^(n-1)+cx^(n-2)+...+yx+z"<<endl<<"\tWhere a,b,c....z are some constant values and n is the max power"<<endl;
-    cout<<endl<<"\tEnter Max Power of x: "; cin>>mp;
+    cout<<endl<<"\t| Enter Max Power of x: "; cin>>mp;
     t= mp+1;
     dp=mp-1;
-    cout<<endl<<"\tEnter "<<"\e[1m"<<t<<"\e[0m"<<" Constant values:"<<endl;
+    cout<<endl<<"\t| Enter "<<"\e[1m"<<t<<"\e[0m"<<" Constant values:"<<endl;
     for (i =1, ch ='a';i<=t && ch <='z';i++, ch++){
         if (ch >= 'z') {
                 ch = 'A';
@@ -367,15 +366,27 @@ public:
     cout<<endl<<"\tPlease wait...";
     cout<<endl<<endl;
     this_thread::sleep_for(chrono::milliseconds(600));
-    cout<<"\t\033[32mDifferentiation done!\033[0m"<<endl<<endl<<"\t\033[35m\e[1mdy/dx\e[0m\033[0m = ";
+    if (mp>1){cout<<"\t\033[32mDifferentiation done!\033[0m"<<endl<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m \033[35m\e[1mdy/dx\e[0m\033[0m = ";
     for (i= 1,j=dp,k=mp; i<=mp && j>=1 && k>=1;i++,j--,k--){
         cout<<std::showpos<<pww[k]*ara[i]<<"x";
         if (j> 1) cout<<"^"<<std::noshowpos<<pww[j];
-        if (j == 1) cout<<std::showpos<<ara[i+1];
+        if (j == 1) cout<<std::showpos<<ara[i+1]<<std::noshowpos;
         if(pww[j]==1) break;
     }
-    cout<<endl<<endl;
+    cout<<endl<<endl;}
+    if (mp==0){
+        cout<<endl<<endl;
+    this_thread::sleep_for(chrono::milliseconds(600));
+    cout<<"\t\033[32mDifferentiation done!\033[0m"<<endl<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m \033[35m\e[1mdy/dx\e[0m\033[0m = 0";
+    }
 
+    if (mp==1){
+        cout<<endl<<endl;
+    this_thread::sleep_for(chrono::milliseconds(600));
+    cout<<"\t\033[32mDifferentiation done!\033[0m"<<endl<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m \033[35m\e[1mdy/dx\e[0m\033[0m = "<<ara[1];
+    }
+
+cout<<endl<<endl;
     int choose,any;
     any=ay;
         cout<<std::noshowpos<<"Press 1 to Calculate another, 2 to go back to options page and 0 to log out/exit: ";
@@ -406,14 +417,14 @@ public:
     void dis_2() {
         system("clear");
         double x ,y ,s1=0,s2=0,s3=0,dis;
-    cout<<"\tDistance of a Coordinate from O(0,0)."<<endl<<endl;
+    cout<<endl<<"\033[35m\t\e[1mDistance of a Point from Origin:\033[0m\e[0m\n"<<endl<<endl;
     cout<<"\tEnter the X and Y coordinates : ";
     cin>>x>>y;
     s1 = x*x;
     s2 = y*y;
     s3 = s1 + s2;
     dis = sqrt(s3);
-   cout<<"\tDistance of ("<<x<<","<<y<<") from O(0,0) : "<<dis<<" units."<<endl<<endl;
+   cout<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m Distance of ("<<x<<","<<y<<") from O(0,0) : "<<dis<<" units."<<endl<<endl;
 
 
             string uname;
@@ -450,24 +461,24 @@ public:
     void slopeq(){
         system("clear");
     double slope = 0, a,b,c,angle;
-	cout<<("\tFind the Slope of a Straight line\n\n");
-	cout<<"\t*Readme\n";
+	cout<<endl<<"\033[35m\t\e[1mQuadrant of a Point:\033[0m\e[0m\n"<<endl<<endl;
+	cout<<"\t> Readme\n";
 	cout<<"\tThe equation of a straight line should be following:\n\t* ax+by+c=0 \n\t* the operator signs depend on the constant values.\n";
 	cout<<"\tAs Example: if it is 12x+13y+23=0, then a = 12, b = 13, c = 23\n \tand if it is 12x-13y-23 =0, then a = 12, b = -13, c = -23.\n";
 	cout<<"\n";
-	cout<<"\tEnter the values of a b and c::\n";
-	cout<<"\ta: ";
+	cout<<"\t | Enter the values of a b and c::\n";
+	cout<<"\t   a: ";
 	cin>>a;
-	cout<<"\tb: ";
+	cout<<"\t   b: ";
     cin>>b;
-	cout<<"\tc: ";
+	cout<<"\t   c: ";
     cin>>c;
 	cout<<"\n";
 	slope = -b/a;
-    cout<<"\tSlope of the St. line is : " <<slope<<endl;
+    cout<<"\033[35m\t\e[1m|\033[0m\e[0m Slope of the St. line is : " <<std::noshowpos<<slope<<endl<<endl;
     if (slope < 0 ) {
             angle=90 + ((-1)*(atan(slope)*57.29577));
-            cout<<"\t| It makes "<<angle<<" degree with respect to X axis"<<endl<<endl;
+            cout<<"\033[35m\t\e[1m>\033[0m\e[0m It makes "<<angle<<" degree with respect to X axis"<<endl<<endl;
 
             cout<<"       .\t\t|"<<endl<<"          .\t\t|"<<endl<<"             .\t\t|"<<endl<<"                .\t|"<<endl<<"                   .\t|  ("<<angle<<")"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
@@ -476,7 +487,7 @@ public:
     }
     if (slope > 0 ) {
             angle=90 + ((-1)*(atan(slope)*57.29577));
-            cout<<"\t| It makes "<<angle<<" degree with respect to X axis"<<endl<<endl;
+            cout<<"\033[35m\t\e[1m>\033[0m\e[0m It makes "<<angle<<" degree with respect to X axis"<<endl<<endl;
             cout<<"\t\t\t|               ."<<endl<<"\t\t\t|            ."<<endl<<"\t\t\t|         ."<<endl<<"\t\t\t|      ."<<endl<<"\t\t\t|   .\t("<<angle<<")"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t               .|"<<endl<<"\t            .\t|"<<endl<<"\t         .\t|"<<endl<<"\t      .\t\t|"<<endl<<"\t   .\t\t|"<<endl;
@@ -518,19 +529,15 @@ public:
 void qua()
 {
     system("clear");
-     cout<<"\n========================================\n";
-    cout<<"\tQuadrant of a Coordinate";
-    cout<<"\n========================================\n\n";
+     cout<<endl<<"\033[35m\t\e[1mQuadrant of a Point:\033[0m\e[0m\n"<<endl<<endl;
 
    double a,b,x,y;
-   cout<<"Enter two coordinates (X,Y) : ";
-   cin>>a;
-   cin>>b;
+   cout<<"\t| Enter two coordinates (X,Y): ";cin>>a>>b;
    x=a;
    y=b;
    cout<<endl;
    if(a > 0.00 && b > 0.00){
-        cout<<"Point ("<<a<<","<<b<<") lies in the 1st Quadrant.\n"<<endl;
+        cout<<"\033[35m\t\e[1m|\033[0m\e[0m Point ("<<a<<","<<b<<") lies in the 1st Quadrant.\n"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -542,7 +549,7 @@ void qua()
 
    }
    else if(a < 0.00 && b > 0.00) {
-        cout<<"Point ("<<a<<","<<b<<") lies in the 2nd Quadrant.\n"<<endl;
+        cout<<"\033[35m\t\e[1m|\033[0m\e[0m Point ("<<a<<","<<b<<") lies in the 2nd Quadrant.\n"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t("<<a<<","<<b<<")\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -553,7 +560,7 @@ void qua()
             outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 2nd Quadrant)"<<endl;}else{}
    }
    else if(a < 0.00 && b < 0.00){
-      cout<<"Point ("<<a<<","<<b<<")lies in the 3rd Quadrant.\n"<<endl;
+      cout<<"\033[35m\t\e[1m|\033[0m\e[0m Point ("<<a<<","<<b<<")lies in the 3rd Quadrant.\n"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t----------------------------------"<<endl;
         cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t("<<a<<","<<b<<")\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -564,7 +571,7 @@ void qua()
             outfile<<"[F4] "<<"Inputs: ("<<x<<","<<y<<") -- Output: (Lies in 3rd Quadrant)"<<endl;}else{}
    }
    else if(a > 0.00 && b < 0.00){
-            cout<<"Point ("<<a<<","<<b<<")lies in the 4th Quadrant.\n"<<endl;
+            cout<<"\033[35m\t\e[1m|\033[0m\e[0m Point ("<<a<<","<<b<<")lies in the 4th Quadrant.\n"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t----------------------------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -576,7 +583,7 @@ void qua()
    }
 
    else{
-      cout<<"Point ("<<a<<","<<b<<") lies in the Origin.\n";
+      cout<<"\033[35m\t\e[1m|\033[0m\e[0m Point ("<<a<<","<<b<<") lies in the Origin.\n";
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -617,24 +624,24 @@ void qua()
 
 void mircor ()
 {
+    system("clear");
 	double x1,y1, mx, my, mo,x,y;
 	int c;
-	cout<<"\tMirror of a Point"<<endl<<endl;
-	cout<<"\t*Options: \t (choose one)\n";
-	cout<<"\t1. Mirror with respect to X axis\n";
-	cout<<"\t2. Mirror with respect to Y axis\n";
-	cout<<"\t3. Mirror with respect to Origin\n";
-	cout<<"\t4. Mirror with respect to another Point\n";
+	cout<<endl<<"\033[35m\t\e[1mMirror of a Point:\033[0m\e[0m\n"<<endl<<endl;
+	cout<<"\t[1] Mirror with respect to X axis\n";
+	cout<<"\t[2] Mirror with respect to Y axis\n";
+	cout<<"\t[3] Mirror with respect to Origin\n";
+	cout<<"\t[4] Mirror with respect to another Point\n";
 
 	cout<<"\n\tChoose and option: ";
 	cin>>c;
 
 	if (c == 1) {
-		system("clear");
-		cout<<"\tEnter coordinates of the point: ";
+        cout<<endl<<"\t\033[34m> With respect to X axis:\033[0m"<<endl;
+		cout<<"\t| Enter coordinates of the point: ";
 		cin>>x1;
 		cin>>y1;
-		cout<<"\tMirror of ("<<x1<<","<<y1<<") w.r.t X axis is ("<<x1<<","<<-y1<<")\n"<<endl;
+		cout<<"\033[35m\t\e[1m|\033[0m\e[0m Mirror of ("<<x1<<","<<y1<<") w.r.t X axis is ("<<x1<<","<<-y1<<")\n"<<endl;
 
 		cout<<"\t\t\t|"<<endl<<"\t\t\t|\t.   ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
         cout<<"\t--------------(0,0)--------------"<<endl;
@@ -647,11 +654,11 @@ void mircor ()
 	}
 
 	if (c == 2) {
-		system("clear");
-		cout<<"\tEnter coordinates of the point: ";
+        cout<<endl<<"\t\033[34m> With respect to Y axis:\033[0m"<<endl;
+		cout<<"\t| Enter coordinates of the point: ";
 		cin>>x1;
 		cin>>y1;
-		cout<<"\tMirror of ("<<x1<<","<<y1<<") w.r.t Y axis is ("<<-x1<<","<<y1<<")\n"<<endl;
+		cout<<"\033[35m\t\e[1m|\033[0m\e[0m Mirror of ("<<x1<<","<<y1<<") w.r.t Y axis is ("<<-x1<<","<<y1<<")\n"<<endl;
 		cout<<"\tmirror("<<-x1<<","<<y1<<")\t|"<<endl<<"\t\t.\t|\t.   ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
@@ -663,11 +670,11 @@ void mircor ()
 	}
 
 	if (c == 3) {
-		system("clear");
-		cout<<"\tEnter coordinates of the point: ";
+        cout<<endl<<"\t\033[34m> With respect to Origin:\033[0m"<<endl;
+		cout<<"\t| Enter coordinates of the point: ";
 		cin>>x1;
 		cin>>y1;
-		cout<<"Mirror of ("<<x1<<","<<y1<<") w.r.t Origin is ("<<-x1<<","<<-y1<<")\n"<<endl;
+		cout<<"\033[35m\t\e[1m|\033[0m\e[0m Mirror of ("<<x1<<","<<y1<<") w.r.t Origin is ("<<-x1<<","<<-y1<<")\n"<<endl;
 		double a,b;
 		a=x1;
 		b=y1;
@@ -698,21 +705,21 @@ void mircor ()
             cout<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|\t. ("<<a<<","<<b<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
    }
 
-   cout<<endl<<"\tGraph: ((x,y)) are the mirrored points"<<endl;
+   cout<<endl<<"\t[Graph: ((x,y)) are the mirrored points]"<<endl;
 
 	}
 
 	if (c == 4) {
-		system("clear");
-		cout<<"\tEnter coordinates of the point: ";
+        cout<<endl<<"\t\033[34m> With respect to another Point:\033[0m"<<endl;
+		cout<<"\t| Enter coordinates of the point: ";
 		cin>>x1;
 		cin>>y1;
-		cout<<"\tEnter coordinates of the mirroring point: ";
+		cout<<"\t| Enter coordinates of the mirroring point: ";
 		cin>>mx;
 		cin>>my;
 		x = (2*mx)-x1;
 		y = (2*my)-y1;
-		cout<<"\tMirror of ("<<x1<<","<<y1<<") w.r.t ("<<mx<<","<<my<<") is ("<<x<<","<<y<<")\n"<<endl;
+		cout<<"\033[35m\t\e[1m|\033[0m\e[0m Mirror of ("<<x1<<","<<y1<<") w.r.t ("<<mx<<","<<my<<") is ("<<x<<","<<y<<")\n"<<endl;
 
             cout<<"\t\t\t|"<<endl<<"\t("<<x<<","<<y<<") ."<<"\t\t|\t. ("<<mx<<","<<my<<")"<<"\t\t. ("<<x1<<","<<y1<<")"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl<<"\t\t\t|"<<endl;
             cout<<"\t--------------(0,0)--------------"<<endl;
@@ -751,68 +758,69 @@ void mircor ()
 }
 
 void invelyz (){
+    system("clear");
  int budget,n,i,tot=0, product_count[10000];
     double ivst, pricedata[10000], invested, invested_1, sell_price,x,y,z,profit,pro_sim = 0,rem_blnc = 0;
-    cout<<"Welcome to Business Analysis\n";
-    cout<<"Instructions:\n1. Enter your total budget\n";
-    cout<<"2.Enter the number of products you are intend to sell\n";
-    cout<<"\033[32m(i.e. If you are planning to sell {A,B,C} then number of products is 3)\n";
-    cout<<"\033[0m3. Enter Price per product\n";
-    cout<<"4. Enter product counts\n";
-    cout<<"5. Enter the percentage amount of your needed profit\n";
+   cout<<endl<<"\033[35m\t\e[1mBusiness Analysis:\033[0m\e[0m\n"<<endl<<endl;
+    cout<<"\t\e[1mInstructions:\e[0m\n\t1. Enter your total budget\n";
+    cout<<"\t2.Enter the number of products you are intend to sell\n";
+    cout<<"\t\033[32m(i.e. If you are planning to sell {A,B,C} then number of products is 3)\n";
+    cout<<"\t\033[0m3. Enter Price per product\n";
+    cout<<"\t4. Enter product counts\n";
+    cout<<"\t5. Enter the percentage amount of your needed profit\n";
     cout<<"\n\n";
-    cout<<"Enter Your Budget: ";
+    cout<<"\t | Enter Your Budget: ";
     cin>>budget;
-    cout<<"Number of Products: ";
+    cout<<"\t | Number of Products: ";
     cin>>n;
     for (i = 1; i <= n; i++) {
-        cout<<"\033[0mPrice of product " << i<<" : ";
+        cout<<"\t   | \033[0mPrice of product " << i<<" : ";
        cin>>pricedata[i];
-        cout<<"\033[0mQuantity of product " << i<<" : ";
+        cout<<"\t   |\033[0mQuantity of product " << i<<" : ";
        cin>>product_count[i];
         ivst = pricedata[i]*product_count[i];
         invested += ivst;
         rem_blnc = budget - invested;
 
         if (rem_blnc <= 0 || pricedata[i+1] >= rem_blnc) {
-            cout<<"\033[31m\nBUDGET EXCEEDED OR NO INVESTMENT LEFT\n\n";
+            cout<<"\033[31m\n\t\tBUDGET EXCEEDED OR NO INVESTMENT LEFT\n\n";
             break;
             }
             else {
                 tot++;
-                cout<<"\033[35mRemaining Balance : "<< rem_blnc<<endl;
+                cout<<"\t \033[35m| Remaining Balance : \033[0m"<< rem_blnc<<endl;
             }
 
     }
     int tot1=0;
     if (rem_blnc == 0 ) tot1 = tot+1;
     else tot1 = tot;
-   cout<<"\033[0m------------------------------------------\n";
+   cout<<"\t\033[0m------------------------------------------\n";
     for (i = 1; i<= tot1; i++) {
         ivst = pricedata[i]*product_count[i];
-        cout<<"\033[0mPrice of product "<< i<<"  is " << pricedata[i]<<endl;
-        cout<<"\033[0mQuantity of product "<< i<<"  is "<< product_count[i]<<endl;
-        cout<<"\033[0mTotal Price of product "<< i<< " is "<< ivst<<endl;
-        cout<<"\033[0m------------------------------------------\n";
+        cout<<"\t | Price of product "<< i<<"  is " << pricedata[i]<<endl;
+        cout<<"\t | Quantity of product "<< i<<"  is "<< product_count[i]<<endl;
+        cout<<"\t | Total Price of product "<< i<< " is "<< ivst<<endl;
+        cout<<"\t------------------------------------------\n";
         invested_1 += ivst;
         if (pricedata[i] == 0) break;
     }
-   cout<<"\033[32mTotal Invested: "<< invested_1<<endl;
+   cout<<"\t\033[32m | Total Invested: "<< invested_1<<endl;
 
-    cout<<"\033[0m=========================================\n\n";
-    cout<<"\033[0mHow much profit do you want? ";
+    cout<<"\033[0m\t=========================================\n\n";
+    cout<<"\033[0m\t | How much profit do you want? ";
     cin>>profit;
     pro_sim = profit/100;
     sell_price = invested_1 + (invested_1*pro_sim);
-    cout<<"\n\033[0m------------------------------------------\n";
-    cout<<"\n\033[33mTotal Selling Price should be: "<< sell_price<<endl;
-    cout<<"\n\033[0m------------------------------------------\n";
+    cout<<"\n\n\033[0m\t------------------------------------------\n";
+    cout<<"\n\033[35m\t\e[1m|\033[0m\e[0m Total Selling Price should be: "<< sell_price<<endl;
+    cout<<"\n\033[0m\t------------------------------------------\n";
     double dsp = 0, dsp1 = 0;
     dsp = sell_price-invested_1;
     dsp1 = dsp/tot1;
     for (i = 1; i<= tot1; i++) {
-        cout<<"\033[0mSell the product "<< i<<" for "<< (pricedata[i]*pro_sim)+pricedata[i]<<endl;
-        cout<<"\033[0m------------------------------------------\n";
+        cout<<"\033[35m\t\e[1m|\033[0m\e[0m Sell the product "<< i<<" for \033[35m\t\e[1m"<< (pricedata[i]*pro_sim)+pricedata[i]<<"\033[0m\e[0m "<<endl;
+        cout<<"\t------------------------------------------\n";
         //if (pricedata[i] == 0) break;
     }
 
@@ -848,15 +856,17 @@ void invelyz (){
 
 void isect()
  {
+     system("clear");
     double a1,b1,c1,a2,b2,c2,x1=0,y1=0,d=0,xx=0,yy=0;
+    cout<<endl<<"\033[35m\t\e[1mIntersect Point of St Lines:\033[0m\e[0m\n"<<endl<<endl;
     cout<<"\tEnter constant values for a1,b1,c1 respectively: ";
     cin>>a1>>b1>>c1;
     cout<<"\n";
-    cout<<"\tEnter constant values for a2,b2,c2 respectively: ";
+    cout<<"\t | Enter constant values for a2,b2,c2 respectively: ";
     cin>>a2>>b2>>c2;
     cout<<"\n";
-    cout<<"\tThe equation of the straight line (1) is: "<<a1<<"x"<<std::showpos<<b1<<"y"<<c1 <<"= 0\n";
-    cout<<"\tThe equation of the straight line (2) is: "<<std::noshowpos<<a2<<"x"<<std::showpos<<b2<<"y"<<c2 <<"= 0\n"<<endl;
+    cout<<"\t  > The equation of the straight line (1) is: "<<a1<<"x"<<std::showpos<<b1<<"y"<<c1 <<"= 0\n";
+    cout<<"\t  > The equation of the straight line (2) is: "<<std::noshowpos<<a2<<"x"<<std::showpos<<b2<<"y"<<c2 <<"= 0\n"<<endl;
 
     d = (a1*b2)-(b1*a2);
     if (a1*b2 != a2*b1) {
@@ -864,7 +874,7 @@ void isect()
         yy = (c1*a2)-(c2*a1);
         x1 = xx/d;
         y1 = yy/d;
-       cout<<"\tIntersect Point: ("<<std::noshowpos<<x1<<","<<y1<<")"<<endl;
+       cout<<"\033[35m\t\e[1m|\033[0m\e[0m Intersect Point: ("<<std::noshowpos<<x1<<","<<y1<<")"<<endl;
             string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -872,7 +882,7 @@ void isect()
             outfile<<"[F10] "<<"Intersect Points: ("<<x1<<","<<y1<<")"<<endl;}else{}
     }
     else {
-            cout<<"\tThe Lines are parallel to each other, hence there is no Intersect point"<<endl;
+            cout<<"\033[35m\t\e[1m|\033[0m\e[0m The Lines are parallel to each other, hence there is no Intersect point"<<endl;
      string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -909,6 +919,7 @@ void isect()
 
 void ntgrate ()
 {
+
     system("clear");
     int a=0,b=0,c=0,d,e,mp,n,var,terms,i,j;
     char chars, sign1, sign2,sign,sign3,sign4,sign5,sign6,sign7,sign8,sign9,sign10,sign11;
@@ -916,11 +927,11 @@ void ntgrate ()
     cout<<"\n\033[35m\t\e[1mIntigrate a Function\033[0m\e[0m\n";
     cout<<"\n";
     cout<<"\tIntegration of a Function is limited to only one term\n";
-    cout<<"\tEnter the power (n) of x (x^n): ";
+    cout<<"\t| Enter the power (n) of x (x^n): ";
     cin>>mp;
     terms = mp+1;
     int ara[terms],cont;
-    cout<<"\tEnter Constant value with x (if no, enter 1): ";
+    cout<<"\t| Enter Constant value with x (if no, enter 1): ";
     cin>>cont;
 
 
@@ -928,9 +939,9 @@ void ntgrate ()
             cout<<"\n\t--------------------------\n";
             cout<<"\tThe Equation is y = "<<cont<<"x^"<<mp<<endl;
             cout<<"\t--------------------------\n";
-            cout<<"\tINTEGRATION of Y:\n";
+            cout<<"\033[35m\t\e[1m|\033[0m\e[0m INTEGRATION of Y:\n";
             cout<<"\t--------------------------\n";
-            cout<<"\tint(y) dx = ("<<cont<<"/"<<mp+1<<")*x^"<<mp+1<<endl;
+            cout<<"\033[35m\t\e[1mint(y) dx \033[0m\e[0m = ("<<cont<<"/"<<mp+1<<")*x^"<<mp+1<<endl;
 
     int choose,any;any=ay;
 	cout<<"\nPress 1 to Calculate another, 2 to go back to options page and 0 to log out/exit\n";
@@ -961,31 +972,32 @@ void ntgrate ()
 void pdig() {
 
     {
+        system("clear");
 
     double price,oprice,pdiff;
     int a,b,c,d,e,f,g,h,i,j,k,l,choose,any;any=ay;
 
-    cout<<"\tWelcome to Profit Diagram"<<endl;
+    cout<<endl<<"\033[35m\t\e[1mProfit Diagram:\033[0m\e[0m\n"<<endl<<endl;
     cout<<"\tIf you are running a shop and you have some good amount of\n\tcompetitors around you, calculate the\n\tprobability if you can attract more customers\n\tby your servuce!"<<endl;
 
-    cout<<endl<<"\tEnter the price of your most iconic product: ";
+    cout<<endl<<"\t | Enter the price of your most iconic product: ";
     cin>>price;
-    cout<<endl<<"\tEnter 1 if yes/true and 0 if no/false: "<<endl;
-    cout<<endl<<"\tIs there any other shop selling this product? ";
+    cout<<endl<<"\t> Enter \033[32m1\033[0m if \033[32myes/true\033[0m and \033[31m0\033[0m if \033[31mno/false\033[0m: "<<endl;
+    cout<<endl<<"\t | Is there any other shop selling this product? ";
     cin>>a;
     if (a >0 ){
-    cout<<"\tWhats the price of the product they are selling for? ";
+    cout<<"\t | Whats the price of the product they are selling for? ";
     cin>>oprice;
-    cout<<"\tDo they provide any warranty/after sales service? ";
+    cout<<"\t | Do they provide any warranty/after sales service? ";
     cin>>b;
-    cout<<"\tDo you provide any warranty/after sales service? ";
+    cout<<"\t | Do you provide any warranty/after sales service? ";
     cin>>c;
-    cout<<"\tAre they providing any offers with the product? ";
+    cout<<"\t | Are they providing any offers with the product? ";
     cin>>d;
-    cout<<"\tAre you providing any offers with the product? ";
+    cout<<"\t | Are you providing any offers with the product? ";
     cin>>e;
-    cout<<"\tWhich shop is more organized and\n\tconsumer friendly? "<<endl;
-    cout<<"\tType 1 if yours, 0 if theirs: ";
+    cout<<endl<<"\t> Which shop is more organized & consumer friendly? "<<endl;
+    cout<<"\t | Type \033[32m1\033[0m if \033[32myours\033[0m and \033[31m0\033[0m if \033[31mtheirs\033[0m ";
     cin>>f;
     pdiff = oprice - price;
 
@@ -1017,7 +1029,8 @@ void pdig() {
 
     int sum = 0;
     sum = fc + fe + ff+pl;
-    cout<<endl<<"\tYou will Attract "<<sum<<" percent of the customers!"<<endl<<endl;;
+    cout<<endl;
+    cout<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m You will Attract "<<sum<<" percent of the customers!"<<endl<<endl;;
             string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1025,7 +1038,7 @@ void pdig() {
             outfile<<"[F15] "<<"You will Attract "<<sum<<" percent of the customers!"<<endl;}else{}
     }
     else {
-        cout<<"\tYou are the only player in the field, Play as you like!!"<<endl<<endl;
+        cout<<"\033[35m\t\e[1m|\033[0m\e[0m You are the only player in the field, Play as you like!!"<<endl<<endl;
         string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1063,16 +1076,20 @@ void pdig() {
 
 
 void maxima(){
+
     system("clear");
     double a,b,c,x=0,y=0;
-    cout<<"Enter the values of a, b, c respectively: "<<endl;
-    cin>>a>>b>>c;
-    cout<<"The function is y = "<<a<<"x^2"<<std::showpos<<b<<"x"<<std::showpos<<c<<endl;
+    cout<<endl<<"\033[35m\t\e[1mMaxima/Minima of a Function:\033[0m\e[0m\n"<<endl<<endl;
+    cout<<"\t| Enter the values of a, b, c respectively:"<<endl;
+    cout<<"\t   a: "; cin>>a;
+    cout<<"\t   b: "; cin>>b;
+    cout<<"\t   c: "; cin>>c;
+    cout<<endl<<endl<<"033[35m\t\e[1m|\033[0m\e[0m The function is y = "<<a<<"x^2"<<std::showpos<<b<<"x"<<std::showpos<<c<<endl;
     if ( a >0 ){
             x = ((-1)*b)/(2*a);
             y = (a*(x*x))+(b*x)+c;
 
-        cout<<"The above function has minima value.\nThe minima coordinates are ("<<x<<","<<y<<")"<<endl;
+        cout<<"033[35m\t\e[1m|\033[0m\e[0m The above function has minima value.\n033[35m\t\e[1m|\033[0m\e[0m The minima coordinates are ("<<x<<","<<y<<")"<<endl;
        string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1082,7 +1099,7 @@ void maxima(){
     else {
         x = ((-1)*b)/(2*a);
             y = (a*(x*x))+(b*x)+c;
-            cout<<"The above function has maxima value"<<"The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
+            cout<<"033[35m\t\e[1m|\033[0m\e[0m The above function has maxima value"<<endl<<"033[35m\t\e[1m|\033[0m\e[0m The maxima coordinates are ("<<x<<","<<y<<")"<<endl;
             string uname;
             uname = up;
             int uh = ay;if(uh==0){ofstream outfile;
@@ -1119,10 +1136,8 @@ int choose,any;any=ay;
 void angle()
 {
     system("clear");
-   cout<<"\n\t================================================================\n";
-     cout<<"\tAngle made by the point with respect to x & y axis.";
-     cout<<"\n\t=================================================================\n\n";
-     cout<<"\tEnter the X and Y coordinates : ";
+    cout<<endl<<"\033[35m\t\e[1mAngle in x axis of a Point:\033[0m\e[0m\n"<<endl<<endl;
+     cout<<"\t| Enter the X and Y coordinates : ";
     setlocale(LC_ALL, "");
 
     double x ,y ,hor = 0, lob = 0, b = 0.596227, k=0, theta = 0 , k2 =0;
@@ -1131,7 +1146,7 @@ void angle()
     k = y/x;
     theta = atan(k);
     theta = theta * 57.29577;
-    cout<<"\tAngle made by ("<<x<<","<<y<<") is "<<theta<<"degrees"<<endl;
+    cout<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m Angle made by ("<<x<<","<<y<<") is "<<theta<<" degrees"<<endl;
 
     string uname;
             uname = up;
@@ -1166,10 +1181,11 @@ void angle()
 void eqgen(){
     system("clear");
     double x1,y1,x2,y2,a,b;
-    cout<<"Enter x1,y1,x2,y2 respectively: "; cin>>x1>>y1>>x2>>y2;
+    cout<<endl<<"\033[35m\t\e[1mStraight Line Equation Generator:\033[0m\e[0m\n"<<endl<<endl;
+    cout<<"\t| Enter (x1,y1), (x2,y2) respectively: "; cin>>x1>>y1>>x2>>y2;
     a = x1-x2;
     b = y1-y2;
-    cout<<endl<<"\tEquation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;
+    cout<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m Equation: "<<b<<"x"<<std::showpos<<-a<<"y"<<(-b*x1)+(a*y1)<<"= 0"<<endl;
 
             string uname;
             uname = up;
@@ -1206,10 +1222,10 @@ void car()
 {
     system("clear");
 	 double x, y, r, theta,thetain,PI = 3.1416;
-
-	 cout<<"Enter radius of polar coordinate (r): ";
+	 cout<<endl<<"\033[35m\t\e[1mPolar to Cartesian Conversion:\033[0m\e[0m\n"<<endl<<endl;
+	 cout<<"\t| Enter radius of polar coordinate (r): ";
 	 cin>>r;
-	 cout<<"Enter angle of polar coordinate in degree (theta): ";
+	 cout<<"\t| Enter angle of polar coordinate in degree (theta): ";
 	 cin>>thetain;
 
 	 theta = thetain * PI/180;
@@ -1218,7 +1234,7 @@ void car()
 
 	 y = r * sin(theta);
 
-	cout<<"Cartesian coordinates are (x,y) : (" << x<<"," << y<<")"<<endl;
+	cout<<endl<<"\033[35m\t\e[1m|\033[0m\e[0m Cartesian coordinates are (x,y) : (" << x<<"," << y<<")"<<endl;
 
 	string uname;
             uname = up;
